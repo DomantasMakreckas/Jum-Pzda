@@ -1,10 +1,9 @@
 <html>
     <head>
-        <title>Aš valdau HTML <?php print 'ir PHP'?> !</title>
+        <title><?php print 'Aš, ' . date("l") . ' ir PHP'; ?></title>
     </head>
     <body>
-        <h1><strong>Ugnius</strong> - HTML <?php print 'ir PHP'?> asas!</h1>
-        <p>Moku kurti dinamini turini!</p>
-        <p>Atidaryta: <?php print date('Y-m-d H:i:s');?></p>
+        <h1><strong>Ugnius</strong> - HTML <?php print 'ir PHP' ?> asas jau nuo <?php print date("y") . ' metų'; ?></h1>
+        <p>Viskas prasidejo <?php print date("F"). ' mėnesio, '.date("d")." dieną!"; ?></p>
     </body>
 </html>
