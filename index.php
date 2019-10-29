@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Aš valdau HTML <?php print 'Ir PHP';?></title>
+  <title><?php print 'Aš,' . date('l') . " ir PHP";?></title>
 </head>
 <body>
-    <h1>Robertas Ruskys - HTML, <?php print 'Ir PHP';?> </h1>
-    <p>Moku kurti statini turini. Atidaryta: <?php print date('Y-m-d H:i:s');?></p>
+    <h1>Robertas Ruskys - HTML, <?php print 'Ir PHP';?> . asas jau nuo . <?php print date('Y') . ' metu';?>  </h1>
+    <p>Viskas prasidejo <?php print date('F') . ' menesio ' . date('l') . " diena!";?></p>
 </body>
 </html>
 
