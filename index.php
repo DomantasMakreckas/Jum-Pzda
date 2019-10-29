@@ -1,15 +1,9 @@
 <html>
     <head>
-        <title>Komentarai</title>
+        <title>PHP lydės ir <?php print date("Y-m-d", strtotime('+' . rand(0, 10) . 'years')); ?> </title>
     </head>
     <body>
-        <?php
-        /*
-        <h1>Dainiu Tekstai</h1>
-        <h2>Paragrafo Daina</h2>
-        <p>As toks vienisas jaunas paragrafas...</p>
-        <!--<p>Mindau svetimo kodo gatves...</p>-->
-        */
-        ?>
+        <h1><b>Ugnius</b> - Galbūt turėsiu <?php print (rand(1, 5)); ?> vaikų(us) </h1>
+        <p> D. Trump'as nebebus prezidentu: <?php print date("Y, M, d", strtotime('+' . rand(2, 10) . 'years')); ?></p>
     </body>
 </html>
