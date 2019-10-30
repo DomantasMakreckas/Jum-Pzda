@@ -1,8 +1,13 @@
 <html>
     <head>
-        <title>Kauliukas</title>
+        <title>Bomba</title>
+        <style>
+            .bomba {
+                width: <?php print date("s"); ?>%;
+            }
+        </style>
     </head>
     <body>
-        <img src="kauliukai/<?php print rand(1, 6); ?>.png">
+        <img src="/assets/images/bomb.jpg" class ="bomba">
     </body>
 </html>
