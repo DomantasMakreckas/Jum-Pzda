@@ -1,16 +1,26 @@
 <?php
 
-$distance = rand(50, 690);
+$distance = rand(50, 9000);
 $consumption = 7.5;
 $price_1 = 1.3;
+$my_money = 100;
+$trip_condition;
 
-$fuel_total = round($distance / $consumption, 2) ;
+$fuel_total = round(($distance / 100) * $consumption, 2) ;
 $price_trip = round($fuel_total * $price_1, 2) ;
 
-$h1 = "Keliones skaiciuokle";
+if ($my_money >= $price_trip ) {
+    $trip_condition = "Iperkama";
+} else {
+    $trip_condition = "Neiperkama";
+};
+
+$h1 = 'Keliones skaiciuokle';
 $li_1 = "Nuvaziota distancija: $distance";
 $li_2 = "Sunaudota $fuel_total l. kuro";
 $li_3 = "Kaina: $price_trip pinigu";
+$li_4 = "turimi pinigai: $my_money";
+$p_1 = "Isvada: Kelione $trip_condition";
 ;?>
 <html>
     <head>
@@ -22,8 +32,11 @@ $li_3 = "Kaina: $price_trip pinigu";
         <ul>
             <li><?php print $li_1;?></li>
             <li><?php print $li_2;?></li>
-            <li><?php print $li_3;?></li>            
+            <li><?php print $li_3;?></li> 
+            <li><?php print $li_4;?></li> 
         </ul>
+        <hr>
+        <p><?php print $p_1;?></p>
     </body>
 </html>
 
