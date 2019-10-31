@@ -1,21 +1,20 @@
 <?php
-
-    $sudas1 = (rand(1,100));
-    $sudas2 = (rand(1,100));
-    $sudas3 = (rand(1,100));
-    $sudas4 = (rand(1,100));
-
+$bin_vol = 40;
+$bin_heap_vol = rand(30,100);
+$trash_per_day = 15;
+$days = round(($bin_vol + $bin_heap_vol)/$trash_per_day);
+$p_current = "Turima šiukšlinė - $bin_vol litrų";
+$p_max = "Žmona nieko nesako, kol kaupas neviršija $bin_heap_vol ";
+$h3_end = "Išvada: Nieko nedarysiu $days dienas";
 ?>
 <html>
     <head>
         <title>Variables</title>
     </head>
     <body>
-        <div class="body1">
-            <h1>Skolos skaičiuoklė</h1>
-            <h3>Jei paėmei <?php print $sudas1; ?> jievru</h3>
-            <h4>Su dviem kabančiais grąžinsi <?php print $sudas3; ?></h4>
-            <h2>Su vienu kabančiu grąžinsi <?php print $sudas2; ?></h2>
-        </div>
+        <h1>Šiukšlių prognozė</h1>
+        <p><?php print $p_current; ?></p>
+        <p><?php print $p_max; ?></p>
+        <h3><?php print $h3_end; ?></h3>
     </body>
 </html>
