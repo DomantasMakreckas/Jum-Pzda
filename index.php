@@ -1,20 +1,25 @@
 <?php
-$bin_vol = 40;
-$bin_heap_vol = rand(30,100);
-$trash_per_day = 15;
-$days = round(($bin_vol + $bin_heap_vol)/$trash_per_day);
-$p_current = "Turima šiukšlinė - $bin_vol litrų";
-$p_max = "Žmona nieko nesako, kol kaupas neviršija $bin_heap_vol ";
-$h3_end = "Išvada: Nieko nedarysiu $days dienas";
+$distance = rand(100, 500); // km
+$consumption = 7.5; // l/100km
+$price_l = 1.3; // Eur/l
+$fuel_total = round($distance / 100 * $consumption, 2);
+$price_trip = round($fuel_total * $price_l, 2);
+
+$h1_1 = 'Kelionės skaičiuoklė';
+$li_1 = "Nuvažiuota distancija: $distance";
+$li_2 = "Sunaudota $fuel_total kuro.";
+$li_3 = "Kaina: $price_trip pinigų";
 ?>
 <html>
     <head>
-        <title>Variables</title>
+        <title>Kuro skaičiuoklė</title>
     </head>
     <body>
-        <h1>Šiukšlių prognozė</h1>
-        <p><?php print $p_current; ?></p>
-        <p><?php print $p_max; ?></p>
-        <h3><?php print $h3_end; ?></h3>
+        <h1><?php print $h1_1; ?></h1>
+        <ul>
+            <li><?php print $li_1; ?></li>
+            <li><?php print $li_2; ?></li>
+            <li><?php print $li_3; ?></li>  
+        </ul>
     </body>
 </html>
