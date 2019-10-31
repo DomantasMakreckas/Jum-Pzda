@@ -1,24 +1,16 @@
 <?php
-    $string = "string";
-    $int = 1;
-    $boolean = true;
-    $null = null;
-    
+    $img_src = 'https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png';
 ;?>
 <html>
     <head>
         <meta charset="utf-8">
         <title>PHP</title>
-        <style>             
-        </style>
     </head>
     <body>
-        <ul>
-            <li>String Tipas:<?php print $string;?></li>
-            <li>Interger Tipas:<?php print $int;?></li>
-            <li>Boolean Tipas:<?php print $boolean;?></li>
-            <li>Null Tipas:<?php print $null;?></li>
-        </ul>
+        <img src="<?php print $img_src;?>">
+        <img src="<?php print $img_src;?>">
+        <img src="<?php print $img_src;?>">
+        <img src="<?php print $img_src;?>">
     </body>
 </html>
 
