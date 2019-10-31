@@ -1,20 +1,17 @@
+<?php
+
+$img_src = 'http://qnimate.com/wp-content/uploads/2014/03/images2.jpg';
+
+?>
+
+
 <html>
     <head>
         <title>Bomba</title>
     </head>
     <body>
-        <?php
-        $string = 'Zodis';
-        $int = 14;
-        $boolean = true;
-        $null = null;
-        ?>
-        <ul>
-            <li>String tipas: <?php print $string ?></li>
-            <li>Integer Tipas: <?php print $int ?></li>
-            <li>Boolean tipas: <?php print $boolean ?></li>
-            <li>Null tipas: <?php print $null ?></li>
-            <li></li>
-        </ul>
+        <img src="<?php print $img_src; ?>">
+        <img src="<?php print $img_src; ?>">
+        <img src="<?php print $img_src; ?>">
     </body>
 </html>
