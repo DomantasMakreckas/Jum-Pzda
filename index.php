@@ -1,18 +1,24 @@
-
+<?php
+    $string = "string";
+    $int = 1;
+    $boolean = true;
+    $null = null;
+    
+;?>
 <html>
     <head>
         <meta charset="utf-8">
         <title>PHP</title>
         <style>             
-            .box {
-                width: <?php print date('s') * 15;?>;px;
-                height: <?php print date('s') * 15;?>;px;
-            }
         </style>
     </head>
     <body>
-        <img class="box" src="images.jpg">
-        <h1><?php  print date('s')?></h1>      
+        <ul>
+            <li>String Tipas:<?php print $string;?></li>
+            <li>Interger Tipas:<?php print $int;?></li>
+            <li>Boolean Tipas:<?php print $boolean;?></li>
+            <li>Null Tipas:<?php print $null;?></li>
+        </ul>
     </body>
 </html>
 
