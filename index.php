@@ -12,12 +12,12 @@ if($bool == $int) {
 }
 if($str == $bool) {
    $li_2_ats = 'lygus';
-} if ($str == $bool){
+} if ($str === $bool){
     $li_2_ats = 'Identiski';
 }
 if($flt == $str_1) {
    $li_3_ats = 'lygus';
-} if ($flt == $str_1){
+} if ($flt === $str_1){
     $li_3_ats = 'Identiski';
 }
 
