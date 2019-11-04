@@ -1,26 +1,20 @@
 <?php
+$grizai_velai = rand(0,1);
+$grizai_isgeres = rand(0,1);
 
-$distance = rand(50, 9000);
-$consumption = 7.5;
-$price_1 = 1.3;
-$my_money = 100;
-$trip_condition;
+$h1 = 'Buitine skaiciuokle';
+$h2 = '';
 
-$fuel_total = round(($distance / 100) * $consumption, 2) ;
-$price_trip = round($fuel_total * $price_1, 2) ;
 
-if ($my_money >= $price_trip ) {
-    $trip_condition = "Iperkama";
-} else {
-    $trip_condition = "Neiperkama";
-};
-
-$h1 = 'Keliones skaiciuokle';
-$li_1 = "Nuvaziota distancija: $distance";
-$li_2 = "Sunaudota $fuel_total l. kuro";
-$li_3 = "Kaina: $price_trip pinigu";
-$li_4 = "turimi pinigai: $my_money";
-$p_1 = "Isvada: Kelione $trip_condition";
+if($grizai_isgeres && $grizai_velai) {
+    $h2 = 'Grizai velai ir isgeres';
+} if($grizai_isgeres && !$grizai_velai ) {
+    $h2 = 'Grizai isgeres';
+} if(!$grizai_isgeres && $grizai_velai) {
+    $h2 = 'Grizai velai';
+} if(!$grizai_isgeres && !$grizai_velai) {
+    $h2 = 'Nieko nepadarei';
+}
 ;?>
 <html>
     <head>
@@ -28,15 +22,8 @@ $p_1 = "Isvada: Kelione $trip_condition";
         <title>PHP</title>
     </head>
     <body>
-        <h1><?php print $h1;?></h1>
-        <ul>
-            <li><?php print $li_1;?></li>
-            <li><?php print $li_2;?></li>
-            <li><?php print $li_3;?></li> 
-            <li><?php print $li_4;?></li> 
-        </ul>
-        <hr>
-        <p><?php print $p_1;?></p>
+        <h1><?php print $h1 ;?></h1>
+        <h2><?php print $h2 ;?></h2>
     </body>
 </html>
 
