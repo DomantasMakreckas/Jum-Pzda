@@ -19,7 +19,7 @@ if ($sunny) {
                 width: 100px;
                 height: 100px;
             }
-            
+
             div  {
                 display: flex;
             }
@@ -27,8 +27,8 @@ if ($sunny) {
     </head>
     <body>
         <div>
-            <h1><?php print $h1; ?></h1>
-            <img src=<?php print $img ?>>      
+            <img src=<?php print $img ?>>    
+            <h1><?php print $h1; ?></h1
         </div>
 
     </body>
