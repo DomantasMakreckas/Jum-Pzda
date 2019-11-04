@@ -1,36 +1,38 @@
 <?php
-$sunny = rand(0, 1);
+$bool = true;
+$str = '1';
+$flt = 1.23;
+$int = 1;
+$str_1 = '1.23';
 
-
-if ($sunny) {
-    $img = 'https://cdn3.iconfinder.com/data/icons/symbol-1-1/36/12-512.png';
-    $h1 = 'Sauleta';
-} else {
-    $img = 'https://previews.123rf.com/images/designofire/designofire1811/designofire181101801/112650027-cloudy-icon-for-personal-and-commercial-use-.jpg';
-    $h1 = 'Debesuota';
+if($bool == $int) {
+   $li_1 = 'lygus';
+} if ($bool === $int){
+    $li_1 = 'Identiski';
 }
+if($str == $bool) {
+   $li_2 = 'lygus';
+} if ($str == $bool){
+    $li_2 = 'Identiski';
+}
+if($flt == $str_1) {
+   $li_3 = 'lygus';
+} if ($flt == $str_1){
+    $li_3 = 'Identiski';
+}
+
 ?>
 <html>
     <head>
         <meta charset="utf-8">
         <title>PHP</title>
-        <style>
-            img {
-                width: 100px;
-                height: 100px;
-            }
-
-            div  {
-                display: flex;
-            }
-        </style>
     </head>
     <body>
-        <div>
-            <img src=<?php print $img ?>>    
-            <h1><?php print $h1; ?></h1
-        </div>
-
+        <ul>
+            <li><?php print $li_1?></li>
+            <li><?php print $li_2?></li>
+            <li><?php print $li_3?></li>
+        </ul>
     </body>
 </html>
 
