@@ -3,10 +3,10 @@ $kates = rand(1, 3);
 $sunys = rand(1, 3);
 $katasuniai = 0;
 
-for($k = 0; $k <= $kates; $k++){
-    for($s = 0; $s <= $sunys; $s++){
+for ($k = 1; $k <= $kates; $k++) {
+    for ($s = 1; $s <= $sunys; $s++) {
         $pavyko = rand(0, 1);
-        if($pavyko == 1){
+        if ($pavyko == 1) {
             $katasuniai++;
             break;
         }
@@ -23,9 +23,9 @@ $h3 = "Katasuniu iseiga: $katasuniai";
         <title>PHP</title>          
     </head>
     <body>
-        <h1><?php print $h1;?></h1>
-        <h2><?php print $h2;?></h2>
-        <h3><?php print $h3;?></h3>
+        <h1><?php print $h1; ?></h1>
+        <h2><?php print $h2; ?></h2>
+        <h3><?php print $h3; ?></h3>
     </body>
 </html>
 
