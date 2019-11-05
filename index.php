@@ -2,10 +2,9 @@
 $x = rand(1, 10);
 
 for ($y = 0; $y < $x; $y++) {
-    $h1 = "Tai yra $y-tasis ciklas";
-    var_dump($h1);
+    
+    var_dump("Tai yra $y-tasis ciklas");
 }
-;
 ?>
 <html>
     <head>
