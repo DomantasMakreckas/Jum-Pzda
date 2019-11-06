@@ -1,27 +1,44 @@
 <?php
-$months = 12;
-$wallet = 1000;
-$month_income = 700;
+$speed_of_sound = 333;
+$db_decr = 6;
+$db = 120;
+$sec = 0;
+$p = '';
+$h3 = '';
+$my_position = rand(1, 100);
 
-for ($x = 1; $x <= $months; $x++) {
-    $wallet += $month_income - rand(100, 3000);
-    if ($wallet < 0) {
-        $h2 = "Atsargiai, $x menesi gali baigtis pinigai!";
-        break;
+for ($dist = 1; $db > 0; $dist *= 2) {
+    $sec = round($dist / $speed_of_sound);
+    $db -= $db_decr;
+    $p .= "Po $sec s ($dist m.): $db db<br>";
+
+
+//    if ($db > 90 && $my_position <= $dist) {
+//        $h3 .= "Stovedamas $my_position m. nuo griaustinio keisiu kelnes. ";
+//    } else {
+//        $h3 .= "Stovedamas $my_position m. nuo griaustinio nekeisiu kelnes. ";
+//    }
+    if($db > 90){
+        if($my_position <= $dist){
+            $h3 .= "Stovedamas $my_position m. nuo griaustinio keisiu kelnes. ";
+        } else {
+             $h3 .= "Stovedamas $my_position m. nuo griaustinio nekeisiu kelnes. ";
     }
-    $h2 = "Po $months m., prognozuojamas likutis: $wallet";
 }
+}
+echo $my_position;
 
-$h1 = 'Wallet Forecast';
+$h1 = 'Griaustinio zona';
 ?>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>PHP</title>       
+        <title>PHP</title>           
     </head>
     <body>
         <h1><?php print $h1; ?></h1>
-        <h2><?php print $h2; ?></h2>
+        <p><?php print $p; ?></p>
+        <h3><?php print $h3; ?></h3>
     </body>
 </html>
 
