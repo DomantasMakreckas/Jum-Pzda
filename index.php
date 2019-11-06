@@ -5,7 +5,7 @@ $h2_1 = "Benzino buvo: $petrol_in_tank l.";
 
 $diesel_limit = $petrol_in_tank / 10 * 100;
 for ($dyzelis = 0; $dyzelis < $diesel_limit; $dyzelis++) {
-    $diesel_limit = ($petrol_in_tank + $dyzelis)/100*10;
+    $diesel_limit = ($petrol_in_tank + $dyzelis) / 100 * 10;
 }
 
 $h3_1 = "Max dyzelio riba: $diesel_limit l";
