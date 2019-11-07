@@ -1,30 +1,36 @@
 <?php
     $lentyna = [
-            [
-                'kiaušiniai' => [
+            [       [
+                    'pavadinimas'=>'Kiausiniai',
                     'kiekis' => 3
-                ],
-                'Grietinė' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Grietine',
                     'kiekis' => 1
-                ],
-                'jogurtas' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Jogurtas',
                     'kiekis' => 2
-                ],
-                'Žuvis' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Zuvis',
                     'kiekis' => 0
                 ]
             ],
-            [
-                'pienas' => [
+            [       [
+                    'pavadinimas'=>'Pienas',
                     'kiekis' => 1
-                ],
-                'Kefyras' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Kefyras',
                     'kiekis' => 0
-                ],
-                'Degtinė' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Degtine',
                     'kiekis' => 2
-                ],
-                'Kečupas' => [
+                    ],
+                    [
+                    'pavadinimas'=>'Kecupas',
                     'kiekis' => 2
                 ]
             ]
