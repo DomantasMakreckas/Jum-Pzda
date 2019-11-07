@@ -1,17 +1,21 @@
 <?php
+
 $array = [
-    'kiausiniai' => [
+    [
+        'produktas' => 'kiausiniai',
         'dydis' => 'Didelis',
         'kiekis' => 'du'
     ],
-    'baklazanas' => [
+    [
+        'produktas' => 'baklazanas',
         'dydis' => 'Mazas',
         'kiekis' => 'vienas'
     ],
-    'grietines indelis' => [
+    [
+        'produktas' => 'Grietiniles indelis',
         'dydis' => 'Didelis',
         'kiekis' => 'vienas'
-    ]
+    ],
 ];
 
 var_dump($array);
