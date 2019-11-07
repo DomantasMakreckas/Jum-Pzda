@@ -1,14 +1,31 @@
 <?php
 $maistas = [
-    'du dideli kiaušiniai' => ['kiaušiniai'],
-    'vienas mažas' => ['baklažanas'],
-    'vienas didelis'=> ['grietinės indelis']
-    ];
+        [
+            'vardas' => 'Petro',
+            'pavarde' => 'Pizdžio',
+            'daikto busena' => 'prapistas',
+            'daiktas' => 'telefonas'
+        ]
+    ,
+        [
+            'vardas' => 'Tomo',
+            'pavarde' => 'Ablomo',
+            'daikto busena' => 'naudojamas',
+            'daiktas' => 'buljonas'
+        ]
+    ,
+        [
+            'vardas' => 'Anos',
+            'pavarde' => 'Shitkovos',
+            'daikto busena' => 'pasibaigęs',
+            'daiktas' => 'rulonas'
+        ]
+];
 var_dump($maistas);
 ?>
 <html>
     <head>
-        <title>Lyginimas</title>
+        <title>Rūšiavimas</title>
     </head>
     <body>
     </body>
