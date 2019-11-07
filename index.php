@@ -2,19 +2,28 @@
 
 $array = [
     [
-        'produktas' => 'Kiausiniai',
-        'dydis' => 'Didelis',
-        'kiekis' => 1
+        'Vardas' => 'Petro',
+        'Pavarde' => 'Pidzio',
+        'Ginklas' => [
+            'Modelis' => 'telefonas',
+            'Statusas' => 'prap*stas',
+        ],
     ],
     [
-        'produktas' => 'Baklazanas',
-        'dydis' => 'Mazas',
-        'kiekis' => 2
+        'Vardas' => 'Tomo',
+        'Pavarde' => 'Ablomo',
+        'Ginklas' => [
+            'Modelis' => 'buljonas',
+            'Statusas' => 'naudojamas',
+        ],
     ],
     [
-        'produktas' => 'Grietiniles indelis',
-        'dydis' => 'Didelis',
-        'kiekis' => 1
+        'Vardas' => 'Anos',
+        'Pavarde' => 'Shitkovos',
+        'Ginklas' => [
+            'Modelis' => 'rulunas',
+            'Statusas' => 'pasibaiges',
+        ],
     ],
 ];
 
