@@ -1,39 +1,35 @@
 <?php
-$Vartotojas = [
-    [
-        'vardas' => 'Petro',
-        'pavarde' => 'Pizdzio',
-        'daiktas' => [
+    $lentyna = [
             [
-                'pavadinimas' => 'telefonas',
-                'busena' => 'prapistas'
-            ]
-        ]
-    ]
-    ,
-    [
-        'vardas' => 'Tomo',
-        'pavarde' => 'Ablomo',
-        'daiktas' => [
+                'kiaušiniai' => [
+                    'kiekis' => 3
+                ],
+                'Grietinė' => [
+                    'kiekis' => 1
+                ],
+                'jogurtas' => [
+                    'kiekis' => 2
+                ],
+                'Žuvis' => [
+                    'kiekis' => 0
+                ]
+            ],
             [
-                'pavadinimas' => 'buljonas',
-                'busena' => 'naudojamas'
+                'pienas' => [
+                    'kiekis' => 1
+                ],
+                'Kefyras' => [
+                    'kiekis' => 0
+                ],
+                'Degtinė' => [
+                    'kiekis' => 2
+                ],
+                'Kečupas' => [
+                    'kiekis' => 2
+                ]
             ]
-        ]
-    ]
-    ,
-    [
-        'vardas' => 'Anos',
-        'pavarde' => 'Shitkovos',
-        'daiktas' => [
-            [
-                'pavadinimas' => 'rulonas',
-                'busena' => 'pasibaigęs'
-            ]
-        ]
-    ]
-];
-var_dump($Vartotojas);
+        ];
+var_dump($lentyna);
 ?>
 <html>
     <head>
