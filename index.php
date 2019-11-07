@@ -1,6 +1,11 @@
 <?php
 
-$array = [90,15,69,420,123,720];
+$array = [
+    'vieta'  => 'gatve bbz kur',
+    'laikas' => 'vakare nes saules nera',
+    'padaras' => 'liudna panda',
+];
+ 
 
 var_dump($array);
 
