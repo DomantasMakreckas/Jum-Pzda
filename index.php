@@ -1,6 +1,5 @@
 <?php
 $trasa = [
-    'Posukis' => [
         [ // pirmas
             'kryptis' => 'desine',
             'laipsniai_kryptimi' => 180
@@ -25,7 +24,6 @@ $trasa = [
             'kryptis' => 'desine',
             'laipsniai_kryptimi' => 120
         ]
-]
     ];
 var_dump($trasa);
 ?>
