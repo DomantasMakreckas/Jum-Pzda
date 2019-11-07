@@ -3,56 +3,55 @@
 $array = [
 // PIRMAS EILE
     [
-        [
-            'boulingo_takelio_busena' => 'Neprivemta',
-        ],
+        'Privemta' => false,
 //  Kegliu busena
 // Kegliu eiles prasideda nuo pirmo matoto
 // Kegliai skaiciuojami nuo kaires i desine
         [
             [
-                1 => true,
+                true,
             ],
             [
-                1 => false,
-                2 => true,
+                false,
+                true,
             ],
             [
-                1 => false,
-                2 => false,
-                3 => true,
+                false,
+                false,
+                true,
             ],
             [
-                1 => true,
-                2 => false,
-                3 => false,
-                4 => true,
+                true,
+                false,
+                false,
+                true,
             ],
         ],
     ],
 //  ANTRA EILE
     [
+        'Privemta' => true,
+//  Kegliu busena
+// Kegliu eiles prasideda nuo pirmo matoto
+// Kegliai skaiciuojami nuo kaires i desine
         [
-            'boulingo_takelio_busena' => 'Privemta',
-        ],
-        [
             [
-                1 => false,
+                false,
             ],
             [
-                1 => false,
-                2 => false,
+                false,
+                false,
             ],
             [
-                1 => false,
-                2 => false,
-                3 => false,
+                false,
+                false,
+                false,
             ],
             [
-                1 => false,
-                2 => false,
-                3 => false,
-                4 => false,
+                false,
+                false,
+                false,
+                false,
             ],
         ],
     ]
