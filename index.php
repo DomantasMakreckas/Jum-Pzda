@@ -2,20 +2,20 @@
 
 $array = [
     'lentyna_1' => [
-        'produktai' => [
-            'produktas' => [
+        'produktas' => [
+            [
                 'pavadinimas' => 'Kiausiniai',
                 'kiekis' => 3,
             ],
-            'produktas' => [
+            [
                 'pavadinimas' => 'Grietine',
                 'kiekis' => 1,
             ],
-            'produktas' => [
+            [
                 'pavadinimas' => 'Jogurtas',
                 'kiekis' => 2,
             ],
-            'produktas' => [
+            [
                 'pavadinimas' => 'Zuvis',
                 'kiekis' => 0,
             ],
