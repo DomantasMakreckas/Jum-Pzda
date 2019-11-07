@@ -4,17 +4,17 @@ $array = [
     [
         'produktas' => 'kiausiniai',
         'dydis' => 'Didelis',
-        'kiekis' => 'du'
+        'kiekis' => '1'
     ],
     [
         'produktas' => 'baklazanas',
         'dydis' => 'Mazas',
-        'kiekis' => 'vienas'
+        'kiekis' => '2'
     ],
     [
         'produktas' => 'Grietiniles indelis',
         'dydis' => 'Didelis',
-        'kiekis' => 'vienas'
+        'kiekis' => '1'
     ],
 ];
 
