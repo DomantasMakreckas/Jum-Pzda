@@ -2,28 +2,28 @@
 
 $array = [
     [
-        'Vardas' => 'Petro',
-        'Pavarde' => 'Pidzio',
-        'Ginklas' => [
-            'Modelis' => 'telefonas',
-            'Statusas' => 'prap*stas',
+        'vardas' => 'Petro',
+        'pavarde' => 'Pidzio',
+        'ginklas' => [
+            'modelis' => 'telefonas',
+            'statusas' => 'prap*stas',
         ],
     ],
     [
-        'Vardas' => 'Tomo',
-        'Pavarde' => 'Ablomo',
-        'Ginklas' => [
-            'Modelis' => 'buljonas',
-            'Statusas' => 'naudojamas',
+        'vardas' => 'Tomo',
+        'pavarde' => 'Ablomo',
+        'ginklas' => [
+            'modelis' => 'buljonas',
+            'statusas' => 'naudojamas',
         ],
     ],
     [
-        'Vardas' => 'Anos',
-        'Pavarde' => 'Shitkovos',
-        'Ginklas' => [
-            'Modelis' => 'rulunas',
-            'Statusas' => 'pasibaiges',
-        ],
+        'vardas' => 'Anos',
+        'pavarde' => 'Shitkovos',
+        'ginklas' => [
+            'modelis' => 'rulunas',
+            'statusas' => 'pasibaiges',
+        ]
     ],
 ];
 
