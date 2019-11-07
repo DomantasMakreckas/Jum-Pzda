@@ -1,14 +1,18 @@
 <?php
-$array = ['Kiausinis', 'Baklazanas', 'Obuolys'];
+$array = [
+    'kiausiniai' => [
+        'dydis' => 'Didelis',
+        'kiekis' => 'du'
+    ],
+    'baklazanas' => [
+        'dydis' => 'Mazas',
+        'kiekis' => 'vienas'
+    ],
+    'grietines indelis' => [
+        'dydis' => 'Didelis',
+        'kiekis' => 'vienas'
+    ]
+];
 
 var_dump($array);
-?>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>PHP</title>           
-    </head>
-    <body>
-    </body>
-</html>
 
