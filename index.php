@@ -1,5 +1,9 @@
 <?php
-$maistas = ['Kiausinis', 'Baklazanas', 'Obuolys'];
+$maistas = [
+    'du dideli kiaušiniai' => ['kiaušiniai'],
+    'vienas mažas' => ['baklažanas'],
+    'vienas didelis'=> ['grietinės indelis']
+    ];
 var_dump($maistas);
 ?>
 <html>
