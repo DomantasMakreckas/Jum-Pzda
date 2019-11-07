@@ -35,6 +35,26 @@ $array = [
         [
             'boulingo_takelio_busena' => 'Privemta',
         ],
+        [
+            [
+                1 => false,
+            ],
+            [
+                1 => false,
+                2 => false,
+            ],
+            [
+                1 => false,
+                2 => false,
+                3 => false,
+            ],
+            [
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+            ],
+        ],
     ]
 ];
 var_dump($array);
