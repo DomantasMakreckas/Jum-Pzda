@@ -1,41 +1,33 @@
 <?php
-    $lentyna = [
-            [       [
-                    'pavadinimas'=>'Kiausiniai',
-                    'kiekis' => 3
-                    ],
-                    [
-                    'pavadinimas'=>'Grietine',
-                    'kiekis' => 1
-                    ],
-                    [
-                    'pavadinimas'=>'Jogurtas',
-                    'kiekis' => 2
-                    ],
-                    [
-                    'pavadinimas'=>'Zuvis',
-                    'kiekis' => 0
-                ]
-            ],
-            [       [
-                    'pavadinimas'=>'Pienas',
-                    'kiekis' => 1
-                    ],
-                    [
-                    'pavadinimas'=>'Kefyras',
-                    'kiekis' => 0
-                    ],
-                    [
-                    'pavadinimas'=>'Degtine',
-                    'kiekis' => 2
-                    ],
-                    [
-                    'pavadinimas'=>'Kecupas',
-                    'kiekis' => 2
-                ]
-            ]
-        ];
-var_dump($lentyna);
+$trasa = [
+    'Posukis' => [
+        [ // pirmas
+            'kryptis' => 'desine',
+            'laipsniai_kryptimi' => 180
+        ],
+        [ // antras
+            'kryptis' => 'kaire',
+            'laipsniai_kryptimi' => 20
+        ], // trecias
+                [
+            'kryptis' => 'desine',
+            'laipsniai_kryptimi' => 90
+        ],
+        [ // ketvirtas
+            'kryptis' => 'kaire',
+            'laipsniai_kryptimi' => 180
+        ],
+        [ // penktas
+            'kryptis' => 'desine',
+            'laipsniai_kryptimi' => 180
+        ], 
+                [// sestas
+            'kryptis' => 'desine',
+            'laipsniai_kryptimi' => 120
+        ]
+]
+    ];
+var_dump($trasa);
 ?>
 <html>
     <head>
