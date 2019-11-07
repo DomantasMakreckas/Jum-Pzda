@@ -1,37 +1,37 @@
 <?php
 $Vartotojas = [
-[
-'vardas' => 'Petro',
- 'pavarde' => 'Pizdzio',
- 'daiktas' => [
-     [
-    'daikto pavadinimas' => 'telefonas',
-    'daikto busena' => 'prapistas'
-     ]
-]
-]
-,
-[
-'vardas' => 'Tomo',
- 'pavarde' => 'Ablomo',
- 'daiktas' => [
-     [
-    'daikto pavadinimas' => 'buljonas',
-    'daikto busena' => 'naudojamas'
-     ]
-]
-]
-,
-[
-'vardas' => 'Anos',
- 'pavarde' => 'Shitkovos',
- 'daiktas' => [
-     [
-    'daikto pavadinimas' => 'rulonas',
-    'daikto busena' => 'pasibaigęs'
-     ]
-]
-]
+    [
+        'vardas' => 'Petro',
+        'pavarde' => 'Pizdzio',
+        'daiktas' => [
+            [
+                'pavadinimas' => 'telefonas',
+                'busena' => 'prapistas'
+            ]
+        ]
+    ]
+    ,
+    [
+        'vardas' => 'Tomo',
+        'pavarde' => 'Ablomo',
+        'daiktas' => [
+            [
+                'pavadinimas' => 'buljonas',
+                'busena' => 'naudojamas'
+            ]
+        ]
+    ]
+    ,
+    [
+        'vardas' => 'Anos',
+        'pavarde' => 'Shitkovos',
+        'daiktas' => [
+            [
+                'pavadinimas' => 'rulonas',
+                'busena' => 'pasibaigęs'
+            ]
+        ]
+    ]
 ];
 var_dump($Vartotojas);
 ?>
