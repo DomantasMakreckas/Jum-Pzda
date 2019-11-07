@@ -1,31 +1,46 @@
 <?php
 
 $array = [
-    [
-        'vardas' => 'Petro',
-        'pavarde' => 'Pidzio',
-        'ginklas' => [
-            'modelis' => 'telefonas',
-            'statusas' => 'prap*stas',
+    'lentyna_1' => [
+        'produktai' => [
+            'produktas' => [
+                'pavadinimas' => 'Kiausiniai',
+                'kiekis' => 3,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Grietine',
+                'kiekis' => 1,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Jogurtas',
+                'kiekis' => 2,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Zuvis',
+                'kiekis' => 0,
+            ],
         ],
     ],
-    [
-        'vardas' => 'Tomo',
-        'pavarde' => 'Ablomo',
-        'ginklas' => [
-            'modelis' => 'buljonas',
-            'statusas' => 'naudojamas',
+    'lentyna_2' => [
+        'produktai' => [
+            'produktas' => [
+                'pavadinimas' => 'Pienas',
+                'kiekis' => 1,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Kefyras',
+                'kiekis' => 0,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Degtine',
+                'kiekis' => 2,
+            ],
+            'produktas' => [
+                'pavadinimas' => 'Kecupas',
+                'kiekis' => 2,
+            ],
         ],
-    ],
-    [
-        'vardas' => 'Anos',
-        'pavarde' => 'Shitkovos',
-        'ginklas' => [
-            'modelis' => 'rulunas',
-            'statusas' => 'pasibaiges',
-        ]
     ],
 ];
-
 var_dump($array);
 
