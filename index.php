@@ -2,12 +2,12 @@
 
 $array = [
     [
-        'produktas' => 'kiausiniai',
+        'produktas' => 'Kiausiniai',
         'dydis' => 'Didelis',
         'kiekis' => 1
     ],
     [
-        'produktas' => 'baklazanas',
+        'produktas' => 'Baklazanas',
         'dydis' => 'Mazas',
         'kiekis' => 2
     ],
