@@ -1,0 +1,137 @@
+* {
+    font-family: Arial;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+#pavadinimas {
+    padding-top: 4%;
+    text-align: center;
+}
+
+.atsakymas {
+    text-align: center;
+    margin: 20%;
+    margin-top: -16%;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.kamuolys {
+    text-align: center;
+}
+
+nav {
+    padding: 1%;
+    background-color: #008CBA;
+}
+
+.navText{
+    text-decoration: none;
+    padding-left: 1%;
+    padding-right: 1%;
+    color: white;
+}
+
+footer {
+    padding: 1%;
+    background-color: #008CBA;
+}
+
+.footerText {
+    font-size: 70%;
+    background-color: #008CBA;
+    text-decoration: none;
+    color: white;
+}
+
+.kiausrakulas {
+    padding-left: 60%;
+}
+
+.teammate{
+    height: 70vh;
+    width: 70vh;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+}
+.bg{
+    background-image: url(https://s2.15min.lt/images/photos/2018/07/12/original/policija-pristate-naujus-automobilius-5b474fe012a3d.jpg);
+    background-size: 100%;
+}
+.fontcolor {
+    color: white;
+    text-align: center;
+    font-size: 200%;
+    text-shadow: 2px 2px black;
+}
+.center2{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.bodyR{
+    background-image: url("https://c8.alamy.com/comp/B2H574/four-rowdy-drunk-partying-young-men-drinking-beer-sitting-outside-B2H574.jpg");
+    background-size: 100%;
+}
+​
+.lR {
+    font-size: 26px;
+    color: white;
+    text-align: center;
+}
+.pR {
+    font-size: 56px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 50px;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+ul{
+    text-align: center;
+    margin-top: 300px;
+    color: white;
+    font-size: 150%;
+    text-shadow: 2px 2px black;
+}
+
+#flex-div {
+    text-align: center;
+    padding-top: 200px;
+    color: white;
+    text-shadow: 4px 4px black;
+    font-size: 250%;
+}
+
+.body-red {
+    background-image: url("http://www.anglija.today/uploads/thumbs/original/3d871c0ece4c87406c638ecb020aeb2b.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    widht: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.body-blue{
+    background-image: url("https://static2.bigstockphoto.com/9/8/2/large1500/289225501.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    widht: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+li {
+    padding-bottom: 2%;
+}
+
+.logo {
+    font-size: 150%;
+    opacity: 0.4;
+}
