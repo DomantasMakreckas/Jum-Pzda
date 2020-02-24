@@ -1,29 +1,14 @@
+<?php
+$data = date("Y F jS h:i:s")
+?>
+
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Page Title</title>
-    <link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div class="container">
-        <div class="text">
-        </div>
-        <div class="homer">
-        <div class="square"></div>
-        <div class="circle-top"></div>
-        <div class="circle-left"></div>
-        <div class="circle-left circle-right"></div>
-        <div class="circle-eye eye-left">
-        <div class="circle-small small-left"></div>
-        </div>
-        <div class="circle-eye eye-right">
-        <div class="circle-small small-right">   </div>
-        </div>
-        <div class="circle-inf inf-esq"></div>
-        <div class="circle-inf inf-dir"></div>
-        <div class="circle-center-center"></div>
-        <div class="circle-center"></div>
-        </div>
-        </div>
-	</body>
+    <head>
+        <title>Lenta | PHP Fight Club</title>
+    </head>
+    <body>
+        <p><?php print $data ?> Domantas grįžo į PHPFIGHTCLUB'ą!</p>
+    </body>
 </html>
