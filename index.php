@@ -1,7 +1,6 @@
 <?php
-$data = date("Y F jS h:i:s")
+$data = date("Y m d h:i:s");
 ?>
-
 
 <!DOCTYPE html>
 <html>
