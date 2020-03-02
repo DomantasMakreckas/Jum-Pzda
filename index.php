@@ -1,4 +1,6 @@
 <?php
+$title = 'Mentai';
+
 $police_fuel = rand(50, 100);
 $police_cons = 7.5;
 $my_fuel = rand(40, 150);
@@ -15,7 +17,7 @@ $li2 = "Aš nuvažiuočiau: $m_distance km";
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title><?php print $title ?></title>
 </head>
 <body>
 <h1>Pabėgimo skaičiuoklė</h1>
