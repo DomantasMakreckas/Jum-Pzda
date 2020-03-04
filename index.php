@@ -1,33 +1,15 @@
 <?php
-$title = 'Mentai';
+$title = 'Alus';
 
-$police_fuel = rand(50, 100);
-$police_cons = 7.5;
-$my_fuel = rand(40, 150);
-$my_cons = 11.5;
+$money = rand(4, 35);
+$bokal_cost = 3;
+$isleista = floor($money / $bokal_cost);
+$p1 = "Isgerti $isleista bokalai";
+$x = 0;
+$y = 1;
+$z = 0;
 
-$p_distance = round($police_fuel / $police_cons * 100, 2);
-$m_distance = round($my_fuel / $my_cons * 100, 2);
-
-if ($p_distance <= $m_distance) {
-    $tikimybe = 'išeitų';
-} else {
-    $tikimybe = 'neišeitų';
-}
-
-$distance = $m_distance - $p_distance;
-
-if ($distance > 0) {
-    $vaizdavimas = 'pabegsiu';
-    $police_car = 'flexas';
-} else {
-    $vaizdavimas = 'nepabegsiu';
-    $police_car = 'mentai flexas';
-}
-
-$li1 = "Farai nuvažiuotų: $p_distance km";
-$li2 = "Aš nuvažiuočiau: $m_distance km";
-$li3 = "Išvada: $tikimybe pabėgti"
+$bokal_time = 0;
 ?>
 
 <!DOCTYPE html>
@@ -37,69 +19,51 @@ $li3 = "Išvada: $tikimybe pabėgti"
     <title><?php print $title ?></title>
 </head>
 <style>
-    .pabegsiu, .nepabegsiu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-    }
-
-    .nepabegsiu {
-        justify-content: center;
-    }
-
-    .arrow {
-        width: 30vw;
+    .flex {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
+        font-size: 100px;
     }
 
-    .flexas {
-        display: flex;
-        position: relative;
+    div {
+        font-size: 100px;
     }
 
-    .mentai {
-        transform: translate(50%, -10%) rotate(-65deg);
-        z-index: 2;
-    }
-
-    .bybys {
-        z-index: -2;
-        height: 200px;
-        width: 100px;
+    .tulikas {
         position: absolute;
-        transform: translateY(-10%) rotate(90deg);
+        opacity: 0.5;
+
     }
+
+    .gridas {
+        display: grid;
+        grid-auto-flow: row;
+    }
+
+
 </style>
 <body>
-<h1>Pabėgimo skaičiuoklė</h1>
-<ul>
-    <li><?php print $li1 ?></li>
-    <li><?php print $li2 ?></li>
-    <li><?php print $li3 ?></li>
-</ul>
-<section class="<?php print $vaizdavimas ?>">
-    <div class="<?php print $police_car ?>">
-        <img src="https://vignette.wikia.nocookie.net/roblox-apocalypse-rising/images/c/c5/Police_Car.png/revision/latest/scale-to-width-down/340?cb=20190118180450">
-    </div>
-    <?php if ($distance > 0): ?>
-        <div class="arrow">
-            <p><?php print $distance ?></p>
-            <img src="https://vectorified.com/images/arrow-icon-3.png">
-            <p>Pavyko pabėgti</p>
-        </div>
-    <?php else: ?>
+<?php for (; $money > $bokal_cost; $money -= $bokal_cost, $y++, $bokal_time += rand(20, 30)):;
+    $data = date("H:i", strtotime("+2 hours, +$bokal_time minutes")); ?>
+    <div class="flex">
         <div>
-            <img class="bybys"
-                 src="https://www.pirk.lt/uploads/products/3/7/7/1520377/fantasy-dick-with-balls-flesh_3.jpg">;
+            <p><?php print  $data ?></p>
+            <p><?php print $z += $bokal_cost ?> EUR</p>
         </div>
-    <?php endif; ?>
-    <div>
-        <img src="https://drive.venipak.com/wp-content/uploads/2017/08/drive-l-car.png">
+        <?php for ($x = 1; $x < $y; $x++): ?>
+            <img src="https://www.ermitazas.lt/out/pictures/master/product/1/106619.jpg">
+        <?php endfor; ?>
+        <img src="https://paciupk.lt/storage/32000/8230/5ff5f42f55d67b175335d46471aa155e.jpg">
     </div>
-</section>
+
+<?php endfor; ?>
+<div class="gridas">
+    <?php for ($k = 0; $k < $isleista; $k += 4): ?>
+        <div>
+            <img class="tulikas" src="https://www.pirk.lt/uploads/products/8/4/1/773841/pisuaras-704_3.jpg">
+        </div>
+    <?php endfor; ?>
+</div>
 </body>
 </html>
