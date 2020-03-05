@@ -1,0 +1,42 @@
+
+    @font-face {
+        font-family: myFirstFont;
+        src: url('pricedown.ttf') format('truetype');
+    }
+
+    * {
+        font-family: myFirstFont;
+    }
+
+
+body {
+    background: aqua;
+}
+
+h1 {
+    color: darkgreen;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    font-size: 100px;
+    margin: 0;
+}
+
+p {
+    font-size: 100px;
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.star {
+    width: 65px;
+}
+
+
+
+
+
+
+
+
