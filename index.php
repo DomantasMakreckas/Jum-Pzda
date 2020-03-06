@@ -4,6 +4,31 @@ $title = 'Array';
 date_default_timezone_set('Europe/Vilnius');
 
 $game = [
+    'objects' => [
+        [
+            'x' => 700,
+            'y' => 40,
+            'class' => 'car',
+
+        ],
+        [
+            'x' => 1000,
+            'y' => 300,
+            'class' => 'ballas'
+        ],
+        [
+            'x' => 300,
+            'y' => 100,
+            'class' => 'grove'
+        ],
+        [
+            'x' => 1200,
+            'y' => 200,
+            'class' => 'bike'
+        ]
+    ],
+
+
     'time' => '12:08',
     'player' => [
         'armor' => 70,
@@ -81,8 +106,6 @@ $game ['player']['weapons']['available'][] = [
     ]
 ];
 
-//var_dump($game);
-
 $time = $game['time'];
 $bapkes = $game['player']['cash'];
 $h1 = "$$bapkes";
@@ -91,6 +114,18 @@ $health = $game['player']['health'];
 $wanted = $game['player']['wanted_level'];
 $x = 6;
 $k = $x - $wanted;
+
+foreach ($game['objects'] as $key => $object) {
+    $object['on_fire'] = rand(0, 1);
+    $object['target'] = 0;
+    if ($object['on_fire'] == 0) {
+        $object['target'] = 1;
+    }
+    $game['objects'][$key] = $object;
+}
+//var_dump($game);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -119,9 +154,14 @@ $k = $x - $wanted;
         background-size: <?php print $health ?>% 100%;
     }
 
-    h1 {
-        font-size: 110px;
+    .photo {
+        position: absolute;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
     }
+
+
 </style>
 <body>
 <main>
@@ -150,7 +190,24 @@ $k = $x - $wanted;
     <?php endfor; ?>
 </main>
 
+<section>
+    <?php foreach ($game['objects'] as $value): ?>
+        <div class="photo <?php print $value['class'] ?>"
+             style="
+                     left: <?php print $value['x'] ?>px;
+                     bottom: <?php print $value['y'] ?>px;">
+            <?php if ($value['on_fire']) :?>
+            <div class=" on_fire">
+            </div>
+            <?php endif; ?>
+            <?php if ($value['target']) :?>
+            <div class="target"></div>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</section>
 
-<!--<div><img src="https://img1.wikia.nocookie.net/__cb20100216193151/gtawiki/images/7/76/HUD-GTASA.png"></div>-->
+
+<!--<div><img src="https://media.giphy.com/media/6wpHEQNjkd74Q/giphy.gif"></div>-->
 </body>
 </html>

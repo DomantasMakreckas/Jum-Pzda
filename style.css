@@ -1,16 +1,17 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('pricedown.ttf') format('truetype');
+}
 
-    @font-face {
-        font-family: myFirstFont;
-        src: url('pricedown.ttf') format('truetype');
-    }
-
-    * {
-        font-family: myFirstFont;
-    }
+h1, p {
+    font-family: myFirstFont;
+}
 
 
 body {
-    background: aqua;
+    background-image: url('assets/image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
@@ -32,6 +33,53 @@ p {
 .star {
     width: 65px;
 }
+
+.car {
+    background-image: url("assets/image (1).png");
+    height: 200px;
+    width: 300px;
+}
+
+.ballas {
+    background-image: url("assets/image (2).png");
+    height: 100px;
+    width: 50px;
+}
+
+.bike {
+    background-image: url("https://i.pinimg.com/originals/e5/54/70/e55470699f7543b5af0502cd2eae005d.jpg");
+    height: 100px;
+    width: 100px;
+}
+
+.grove {
+    background-image: url("https://i7.pngguru.com/preview/940/490/571/grand-theft-auto-san-andreas-grand-theft-auto-v-grand-theft-auto-vice-city-carl-johnson-grove-street-families-watch-dogs-thumbnail.jpg");
+    height: 100px;
+    width: 200px;
+}
+
+.on_fire {
+    background-image: url("http://pluspng.com/img-png/fire-png-gif--489.gif");
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: 0;
+}
+
+.target {
+    background-image: url("assets/rodykle.png");
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /*top: -20px;*/
+    left: 50%;
+
+}
+
 
 
 
