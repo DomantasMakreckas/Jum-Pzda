@@ -1,6 +1,5 @@
 <form
     <?php print html_attr(($form['attr'] ?? []) + ['method' => 'POST']); ?>>
-
     <?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
         <label><span><?php print $field['label'] ?></span>
             <?php if (in_array($field['type'], ['text', 'email', 'password', 'number'])): ?>
@@ -14,7 +13,10 @@
                 ?>>
 
             <?php elseif (in_array($field['type'], ['select'])): ?>
-                <select <?php print html_attr(($field['extra']['attr'] ?? [])); ?>>
+                <select <?php print html_attr(($field['extra']['attr'] ?? []) +
+                    [
+                        'name' => $field_id
+                    ]); ?>>
                     <?php foreach ($field['options'] as $option_id => $option): ?>
                         <option value="<?php print $option_id; ?>"
                             <?php print ($field['value'] == $option_id) ? 'selected' : ''; ?>>
@@ -30,6 +32,10 @@
                 ); ?>>
                     <?php print $field['value'] ?? ''; ?>
         </textarea>
+            <?php endif; ?>
+
+            <?php if (isset($field['error'])): ?>
+                <span><?php print $field['error']; ?></span>
             <?php endif; ?>
         </label>
     <?php endforeach; ?>

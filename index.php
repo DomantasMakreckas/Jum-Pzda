@@ -1,27 +1,117 @@
 <?php
+require 'bootloader.php';
+
 $title = 'formos';
 
-/**
- *  funkcija apsauganti nuo pavojingu ivesciu (POST)
- * @param array $form
- * @return array|null
- */
-function get_filtered_input(array $form): ?array
-{
-    $filter_params = [];
+$form = [
+    'attr' => [
+        'action' => 'index.php',
+        'method' => 'POST',
+        'class' => 'my-form',
+        'id' => 'login-form',
+    ],
+    'callbacks' => [
+        'success' => 'form_success',
+        'fail' => 'form_fail'
+    ],
+    'fields' => [
+        'first_name' => [
+            'label' => 'First Name',
+            'type' => 'text',
+//            'value' => 'Algis',
+            'validate' => [
+                'validate_not_empty'
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'last_name' => [
+            'label' => 'Last Name',
+            'type' => 'text',
+//            'value' => 'Macijauskas',
+            'validate' => [
+                'validate_not_empty'
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'age' => [
+            'filter' => FILTER_SANITIZE_NUMBER_INT,
+            'label' => 'Age',
+            'type' => 'number',
+//            'value' => '18',
+            'validate' => [
+                'validate_not_empty',
+                'validate_is_number',
+                'validate_is_positive',
+                'validate_max_100'
+            ],
+            'extra' => [
+                'attr' => [
+                    'min' => '18',
+                    'max' => '99',
+                ]
+            ]
+        ],
+        'email' => [
+            'label' => 'Email',
+            'type' => 'email',
+            'validate' => [
+                'validate_not_empty'
+            ],
+//            'value' => 'email'
+        ],
+        'level' => [
+            'label' => 'Level',
+            'type' => 'select',
+            'value' => 'beginner',
+            'validate' => [
+                'validate_not_empty'
+            ],
+            'options' => [
+                'beginner' => 'beginner',
+                'expert' => 'expert',
+                'professional' => 'professional'
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'select-class',
+                    'id' => 'id-class'
+                ]
+            ]
+        ]
+    ],
+    'buttons' => [
+        'submit' => [
+            'text' => 'Patvirtinti',
+            'name' => 'action',
+            'extra' => [
+                'attr' => [
+                    'class' => 'submit-button'
+                ]
+            ]
+        ]
+    ]
+];
 
-    foreach ($form['fields'] as $key => $field) {
-        $filter_params[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
 
-    }
+if ($_POST) {
+    $safe_input = get_filtered_input($form);
+    validate_form($form, $safe_input);
 
-    return filter_input_array(INPUT_POST, $filter_params);
 }
 
-var_dump(get_filtered_input($_POST));
 
-$safe_input = get_filtered_input($_POST);
-
+//var_dump($form['fields']);
+var_dump($_POST);
 
 ?>
 <!DOCTYPE html>
@@ -35,11 +125,6 @@ $safe_input = get_filtered_input($_POST);
 </style>
 <body>
 <h1>Hack It!</h1>
-<h2><?php print $safe_input['vardas'] ?? ''; ?></h2>
-<form method="post">
-    <input type="text" name="vardas">
-    <input type="text" name="pavarde">
-    <input type="submit">
-</form>
+<?php include 'core/templates/form.tpl.php'; ?>
 </body>
 </html>
