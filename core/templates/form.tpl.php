@@ -45,5 +45,8 @@
             <?php print $button['text']; ?>
         </button>
     <?php endforeach; ?>
+    <?php if (isset($form['error'])): ?>
+        <p>  <?php print $form['error']; ?></p>
+    <?php endif; ?>
 </form>
 

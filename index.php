@@ -10,88 +10,94 @@ $form = [
         'class' => 'my-form',
         'id' => 'login-form',
     ],
-    'callbacks' => [
-        'success' => 'form_success',
-        'fail' => 'form_fail'
-    ],
     'fields' => [
-        'first_name' => [
-            'label' => 'First Name',
+//        'first_name' => [
+//            'label' => '',
+//            'type' => 'text',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_space'
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'first-name',
+//                    'id' => 'first-name',
+//                    'placeholder' => 'Vardas ir pavarde'
+//                ]
+//            ]
+//        ],
+//        'X' => [
+//            'label' => 'X:',
+//            'type' => 'number',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number'
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'placeholder' => 'Iveskite skaiciu'
+//                ]
+//            ]
+//        ],
+//        'Y' => [
+//            'label' => 'Y:',
+//            'type' => 'number',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number'
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'placeholder' => 'Iveskite skaiciu'
+//                ]
+//            ]
+//        ],
+//        'options' => [
+//            'label' => 'Veiksmas:',
+//            'type' => 'select',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_select'
+//            ],
+//            'value' => 'sudetis',
+//            'options' => [
+//                'sudetis' => 'Sudetis',
+//                'atimtis' => 'Atimtis'
+//            ]
+//        ],
+        'password' => [
+            'label' => '',
             'type' => 'text',
-//            'value' => 'Algis',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                ]
-            ]
-        ],
-        'last_name' => [
-            'label' => 'Last Name',
-            'type' => 'text',
-//            'value' => 'Macijauskas',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                ]
-            ]
-        ],
-        'age' => [
-            'filter' => FILTER_SANITIZE_NUMBER_INT,
-            'label' => 'Age',
-            'type' => 'number',
-//            'value' => '18',
             'validate' => [
                 'validate_not_empty',
-                'validate_is_number',
-                'validate_is_positive',
-                'validate_max_100'
+
             ],
             'extra' => [
                 'attr' => [
-                    'min' => '18',
-                    'max' => '99',
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Ivesk kazka'
                 ]
             ]
         ],
-        'email' => [
-            'label' => 'Email',
-            'type' => 'email',
+        'password_repeat' => [
+            'label' => '',
+            'type' => 'text',
             'validate' => [
-                'validate_not_empty'
-            ],
-//            'value' => 'email'
-        ],
-        'level' => [
-            'label' => 'Level',
-            'type' => 'select',
-            'value' => 'beginner',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'options' => [
-                'beginner' => 'beginner',
-                'expert' => 'expert',
-                'professional' => 'professional'
+                'validate_not_empty',
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'select-class',
-                    'id' => 'id-class'
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Pakartok ka ivedei'
                 ]
             ]
-        ]
+        ],
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Patvirtinti',
+            'text' => 'Ar as adaptas?',
             'name' => 'action',
             'extra' => [
                 'attr' => [
@@ -99,6 +105,16 @@ $form = [
                 ]
             ]
         ]
+    ],
+    'validators' => [
+        'validate_fields_match' => [
+            'password',
+            'password_repeat'
+        ]
+    ],
+    'callbacks' => [
+        'success' => 'form_success',
+        'fail' => 'form_fail'
     ]
 ];
 
@@ -106,12 +122,37 @@ $form = [
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
+}
+
+/**
+ * @param $form
+ * @param $safe_input
+ */
+function form_success($form, $safe_input)
+{
+//    switch ($safe_input['options']) {
+//        case 'atimtis' :
+//            $result = $safe_input['X'] - $safe_input['Y'];
+//            break;
+//        case 'sudetis' :
+//            $result = $safe_input['X'] + $safe_input['Y'];
+//            break;
+//        default:
+//            $result = 0;
+//    }
+//    var_dump($result);
+
+    var_dump('Viskas ok su tavim');
+}
+
+function form_fail($form, $safe_input)
+{
+    var_dump('Confirmed. Adaptas');
 
 }
 
-
-//var_dump($form['fields']);
-var_dump($_POST);
+//var_dump($_POST);
+//var_dump($form);
 
 ?>
 <!DOCTYPE html>
@@ -124,7 +165,7 @@ var_dump($_POST);
 
 </style>
 <body>
-<h1>Hack It!</h1>
+<h1></h1>
 <?php include 'core/templates/form.tpl.php'; ?>
 </body>
 </html>

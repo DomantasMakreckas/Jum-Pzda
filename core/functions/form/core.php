@@ -2,26 +2,62 @@
 
 /**
  * funkcija validuojanti laukus
+ * (sukuria errorus fieldams/formai)
  * @param $form
- * @param $safe_input
+ * @param $safe_input isfiltruotas POST mastyvas
  * @return bool
  */
 function validate_form(array &$form, array $safe_input): bool
 {
     $success = true;
-    foreach ($safe_input as $field_index => $value) {
-        $field = &$form['fields'][$field_index];
-        $field['value'] = $value;
-        foreach ($field['validate'] ?? [] as $validation) {
-            $valid = $validation($value, $field);
+    foreach ($form['fields'] as $field_index => &$field) {
+
+        $field['value'] = $safe_input[$field_index];
+        foreach ($field['validate'] ?? [] as $validator_index => $field_validator) {
+            if (is_array($field_validator)) {
+                $validator_function = $validator_index;
+                $validate_params = $field_validator;
+                $valid = $validator_function($field['value'], $field, $validate_params);
+            } else {
+                $validator_function = $field_validator;
+
+                $valid = $validator_function($field['value'], $field);
+            }
             if (!$valid) {
                 $success = false;
-//                break
+                break;
             }
         }
     }
+
+    // dabar tikrinsim fors lygio validatorius
+    if ($success) {
+        foreach ($form['validators'] ?? [] as $validator_index => $form_validator) {
+            if (is_array($form_validator)) {
+                $validator_function = $validator_index;
+                $validate_params = $form_validator;
+                $valid = $validator_function($safe_input, $form, $validate_params);
+            } else {
+                $validator_function = $form_validator;
+
+                $valid = $validator_function($safe_input, $form);
+            }
+            if (!$valid) {
+                $success = false;
+                break;
+            }
+        }
+    }
+
+//    var_dump($success);
+    if (isset($form['callbacks']['success']) && $success) {
+        $form['callbacks']['success']($safe_input, $form);
+    } elseif (isset($form['callbacks']['fail']) && !$success) {
+        $form['callbacks']['fail']($safe_input, $form);
+    }
     return $success;
 }
+
 
 /**
  *  funkcija apsauganti nuo pavojingu ivesciu (POST)
@@ -41,3 +77,5 @@ function get_filtered_input(array $form): ?array
     }
     return filter_input_array(INPUT_POST, $filter_params);
 }
+
+
