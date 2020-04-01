@@ -158,6 +158,7 @@ function form_fail($form, $safe_input)
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <link rel="stylesheet" href="app/assets/style.css">
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>
@@ -166,6 +167,8 @@ function form_fail($form, $safe_input)
 </style>
 <body>
 <h1></h1>
-<?php include 'core/templates/form.tpl.php'; ?>
+<section>
+    <?php include 'core/templates/form.tpl.php'; ?>
+</section>
 </body>
 </html>

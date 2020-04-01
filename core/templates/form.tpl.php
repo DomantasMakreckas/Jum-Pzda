@@ -35,7 +35,7 @@
             <?php endif; ?>
 
             <?php if (isset($field['error'])): ?>
-                <span><?php print $field['error']; ?></span>
+                <p><?php print $field['error']; ?></p>
             <?php endif; ?>
         </label>
     <?php endforeach; ?>
