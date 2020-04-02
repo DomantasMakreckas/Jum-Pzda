@@ -11,7 +11,6 @@
                         'value' => $field['value'] ?? ''
                     ]);
                 ?>>
-
             <?php elseif (in_array($field['type'], ['select'])): ?>
                 <select <?php print html_attr(($field['extra']['attr'] ?? []) +
                     [

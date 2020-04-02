@@ -1,1 +1,0 @@
-{"first_name":"Domantas gejus","password":"domantas","password_repeat":"domantas"}

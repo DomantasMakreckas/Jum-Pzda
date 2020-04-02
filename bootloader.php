@@ -9,4 +9,4 @@ require 'core/functions/file.php';
 // loadinam projektui specifines funkcijas
 require 'app/functions/form/validators.php';
 
-define('DB_FILE', 'app/data/db.txt');
+define('DB_FILE', 'app/data/db.json');

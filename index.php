@@ -11,7 +11,7 @@ $form = [
         'id' => 'login-form',
     ],
     'fields' => [
-        'first_name' => [
+        'username' => [
             'label' => 'Username',
             'type' => 'text',
             'validate' => [
@@ -82,24 +82,24 @@ $form = [
                 ]
             ]
         ],
-        'password_repeat' => [
-            'label' => 'Password Repeat',
-            'type' => 'password',
-            'validate' => [
-                'validate_not_empty',
-                'validate_text_length' => [
-                    'min' => 6,
-                    'max' => 20
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                    'placeholder' => ''
-                ]
-            ]
-        ],
+//        'password_repeat' => [
+//            'label' => 'Password Repeat',
+//            'type' => 'password',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_text_length' => [
+//                    'min' => 6,
+//                    'max' => 20
+//                ]
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'first-name',
+//                    'id' => 'first-name',
+//                    'placeholder' => ''
+//                ]
+//            ]
+//        ],
 //        'telefono_nr' => [
 //            'label' => 'Telefono nr',
 //            'type' => 'text',
@@ -154,17 +154,27 @@ $form = [
             ]
         ]
     ],
-    'validators' => [
-        'validate_fields_match' => [
-            'password',
-            'password_repeat'
-        ]
-    ],
+//    'validators' => [
+//        'validate_fields_match' => [
+//            'password',
+//            'password_repeat'
+//        ]
+//    ],
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
     ]
 ];
+
+//$table = [
+//    'head' => [
+//        'username',
+//        'password',
+//    ],
+//    'rows' => [
+//
+//    ]
+//];
 
 
 if ($_POST) {
@@ -178,8 +188,18 @@ if ($_POST) {
  */
 function form_success($safe_input, $form)
 {
-    array_to_file($safe_input, DB_FILE);
+    $data = file_to_array(DB_FILE) ?: [];
+
+    $data[] = [
+        'username' => $safe_input['username'],
+        'password' => $safe_input['password']
+    ];
+    array_to_file($data, DB_FILE);
+
 }
+
+//var_dump(file_to_array(DB_FILE));
+
 
 ///**
 // * @param $form
@@ -202,7 +222,6 @@ function form_fail($safe_input, $form)
 file_to_array(DB_FILE);
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -215,9 +234,11 @@ file_to_array(DB_FILE);
 
 </style>
 <body>
-<h1></h1>
 <section>
     <?php include 'core/templates/form.tpl.php'; ?>
+</section>
+<section>
+
 </section>
 </body>
 </html>

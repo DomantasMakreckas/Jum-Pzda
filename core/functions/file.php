@@ -1,12 +1,13 @@
 <?php
 /**
- * funkcija kuri betkoki masyva issaugo i fail json (string) formatu
+ * funkcija kuri betkoki masyva issaugo i faila json (string) formatu
  * @param array $array
  * @param string $file
  * @return bool
  */
 function array_to_file(array $array, string $file): bool
 {
+
     $string = json_encode($array);
     $bytes_written = file_put_contents($file, $string);
 
