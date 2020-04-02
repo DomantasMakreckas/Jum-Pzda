@@ -11,21 +11,20 @@ $form = [
         'id' => 'login-form',
     ],
     'fields' => [
-//        'first_name' => [
-//            'label' => '',
-//            'type' => 'text',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_space'
-//            ],
-//            'extra' => [
-//                'attr' => [
-//                    'class' => 'first-name',
-//                    'id' => 'first-name',
-//                    'placeholder' => 'Vardas ir pavarde'
-//                ]
-//            ]
-//        ],
+        'first_name' => [
+            'label' => 'Username',
+            'type' => 'text',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Username'
+                ]
+            ]
+        ],
 //        'X' => [
 //            'label' => 'X:',
 //            'type' => 'number',
@@ -66,34 +65,83 @@ $form = [
 //            ]
 //        ],
         'password' => [
-            'label' => '',
-            'type' => 'text',
+            'label' => 'Password',
+            'type' => 'password',
             'validate' => [
                 'validate_not_empty',
-
+                'validate_text_length' => [
+                    'min' => 6,
+                    'max' => 20
+                ]
             ],
             'extra' => [
                 'attr' => [
                     'class' => 'first-name',
                     'id' => 'first-name',
-                    'placeholder' => 'Ivesk kazka'
+                    'placeholder' => ''
                 ]
             ]
         ],
         'password_repeat' => [
-            'label' => '',
-            'type' => 'text',
+            'label' => 'Password Repeat',
+            'type' => 'password',
             'validate' => [
                 'validate_not_empty',
+                'validate_text_length' => [
+                    'min' => 6,
+                    'max' => 20
+                ]
             ],
             'extra' => [
                 'attr' => [
                     'class' => 'first-name',
                     'id' => 'first-name',
-                    'placeholder' => 'Pakartok ka ivedei'
+                    'placeholder' => ''
                 ]
             ]
         ],
+//        'telefono_nr' => [
+//            'label' => 'Telefono nr',
+//            'type' => 'text',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number',
+//                'validate_phone'
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'placeholder' => 'Iveskite skaiciu'
+//                ]
+//            ]
+//        ],
+//        'matematikas' => [
+//            'label' => 'Spek kokia bus saknis is',
+//            'type' => 'text',
+//            'value' => rand(0, 100),
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number',
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'readonly' => true,
+//                    'placeholder' => 'Iveskite skaiciu'
+//                ]
+//            ]
+//        ],
+//        'atsakymas' => [
+//            'label' => 'Atsakymas',
+//            'type' => 'text',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number',
+//            ],
+//            'extra' => [
+//                'attr' => [
+//
+//                ]
+//            ]
+//        ],
     ],
     'buttons' => [
         'submit' => [
@@ -128,31 +176,32 @@ if ($_POST) {
  * @param $form
  * @param $safe_input
  */
-function form_success($form, $safe_input)
+function form_success($safe_input, $form)
 {
-//    switch ($safe_input['options']) {
-//        case 'atimtis' :
-//            $result = $safe_input['X'] - $safe_input['Y'];
-//            break;
-//        case 'sudetis' :
-//            $result = $safe_input['X'] + $safe_input['Y'];
-//            break;
-//        default:
-//            $result = 0;
-//    }
+    array_to_file($safe_input, DB_FILE);
+}
+
+///**
+// * @param $form
+// * @param $safe_input
+// */
+//function form_success($safe_input, $form)
+//{
+//    $value = round(sqrt($safe_input['matematikas']), 2);
+//    $answer = $safe_input['atsakymas'];
+//    $result = $value - $answer;
 //    var_dump($result);
+//}
 
-    var_dump('Viskas ok su tavim');
-}
-
-function form_fail($form, $safe_input)
+function form_fail($safe_input, $form)
 {
-    var_dump('Confirmed. Adaptas');
+    var_dump('Eik nx');
 
 }
 
-//var_dump($_POST);
-//var_dump($form);
+file_to_array(DB_FILE);
+
+
 
 ?>
 <!DOCTYPE html>

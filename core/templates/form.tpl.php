@@ -1,7 +1,7 @@
 <form
     <?php print html_attr(($form['attr'] ?? []) + ['method' => 'POST']); ?>>
     <?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
-        <label><span><?php print $field['label'] ?></span>
+        <label><p><?php print $field['label'] ?></p>
             <?php if (in_array($field['type'], ['text', 'email', 'password', 'number'])): ?>
                 <input <?php
                 print html_attr(($field['extra']['attr'] ?? []) +
