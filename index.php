@@ -11,20 +11,20 @@ $form = [
         'id' => 'login-form',
     ],
     'fields' => [
-        'username' => [
-            'label' => 'Username',
-            'type' => 'text',
-            'validate' => [
-                'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                    'placeholder' => 'Username'
-                ]
-            ]
-        ],
+//        'username' => [
+//            'label' => 'Username',
+//            'type' => 'text',
+//            'validate' => [
+//                'validate_not_empty',
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'first-name',
+//                    'id' => 'first-name',
+//                    'placeholder' => 'Username'
+//                ]
+//            ]
+//        ],
 //        'X' => [
 //            'label' => 'X:',
 //            'type' => 'number',
@@ -51,37 +51,25 @@ $form = [
 //                ]
 //            ]
 //        ],
-//        'options' => [
-//            'label' => 'Veiksmas:',
-//            'type' => 'select',
+
+//        'password' => [
+//            'label' => 'Password',
+//            'type' => 'password',
 //            'validate' => [
 //                'validate_not_empty',
-//                'validate_select'
+//                'validate_text_length' => [
+//                    'min' => 6,
+//                    'max' => 20
+//                ]
 //            ],
-//            'value' => 'sudetis',
-//            'options' => [
-//                'sudetis' => 'Sudetis',
-//                'atimtis' => 'Atimtis'
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'first-name',
+//                    'id' => 'first-name',
+//                    'placeholder' => ''
+//                ]
 //            ]
 //        ],
-        'password' => [
-            'label' => 'Password',
-            'type' => 'password',
-            'validate' => [
-                'validate_not_empty',
-                'validate_text_length' => [
-                    'min' => 6,
-                    'max' => 20
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                    'placeholder' => ''
-                ]
-            ]
-        ],
 //        'password_repeat' => [
 //            'label' => 'Password Repeat',
 //            'type' => 'password',
@@ -142,10 +130,76 @@ $form = [
 //                ]
 //            ]
 //        ],
+//        'options' => [
+//            'label' => 'Veiksmas:',
+//            'type' => 'select',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_select'
+//            ],
+//            'value' => 'sudetis',
+//            'options' => [
+//                'sudetis' => 'Sudetis',
+//                'atimtis' => 'Atimtis'
+//            ]
+//        ],
+        'kardanas' => [
+            'type' => 'radio',
+            'label' => 'Ar laikai kardana?',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'options' => [
+                'taip' => [
+                    'label' => 'Taip',
+                    'value' => 'taip'
+                ],
+                'ne' => [
+                    'label' => 'Ne',
+                    'value' => 'ne'
+                ]
+            ],
+        ],
+        'bakas' => [
+            'type' => 'radio',
+            'label' => 'Ar pili i baka?',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'options' => [
+                'taip' => [
+                    'label' => 'Taip',
+                    'value' => 'taip'
+                ],
+                'ne' => [
+                    'label' => 'Ne',
+                    'value' => 'ne'
+                ]
+            ],
+        ],
+        'zole' => [
+            'type' => 'radio',
+            'label' => 'Ar rukai zoliu arbata?',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'options' => [
+                'taip' => [
+                    'label' => 'Taip',
+                    'value' => 'taip'
+                ],
+                'ne' => [
+                    'label' => 'Ne',
+                    'value' => 'ne'
+                ]
+            ],
+        ]
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Ar as adaptas?',
+            'text' => 'Ziureti statistika',
             'name' => 'action',
             'extra' => [
                 'attr' => [
@@ -164,6 +218,7 @@ $form = [
         'success' => 'form_success',
         'fail' => 'form_fail'
     ]
+
 ];
 
 //$table = [
@@ -191,8 +246,11 @@ function form_success($safe_input, $form)
     $data = file_to_array(DB_FILE) ?: [];
 
     $data[] = [
-        'username' => $safe_input['username'],
-        'password' => $safe_input['password']
+//        'username' => $safe_input['username'],
+//        'password' => $safe_input['password']
+        'kardanas' => $safe_input['kardanas'],
+        'bakas' => $safe_input['bakas'],
+        'zole' => $safe_input['zole']
     ];
     array_to_file($data, DB_FILE);
 
@@ -219,7 +277,10 @@ function form_fail($safe_input, $form)
 
 }
 
-file_to_array(DB_FILE);
+//file_to_array(DB_FILE);
+
+
+//var_dump($_POST);
 
 
 ?>
@@ -237,8 +298,6 @@ file_to_array(DB_FILE);
 <section>
     <?php include 'core/templates/form.tpl.php'; ?>
 </section>
-<section>
 
-</section>
 </body>
 </html>

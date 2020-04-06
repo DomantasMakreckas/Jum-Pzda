@@ -11,12 +11,25 @@
                         'value' => $field['value'] ?? ''
                     ]);
                 ?>>
-            <?php elseif (in_array($field['type'], ['select'])): ?>
+            <?php elseif (in_array($field['type'], ['radio'])): ?>
+                <?php foreach ($field['options'] as $radio_id => $radio_value): ?>
+                    <label><?php print $radio_value['label'] ?></label>
+                    <input <?php
+                    print html_attr(($field['extra']['attr'] ?? []) +
+                        [
+                            'name' => $field_id,
+                            'type' => $field['type'],
+                            'value' => $radio_value['value'] ?? ''
+                        ]);
+                    ?>>
+                <?php endforeach; ?>
+            <?php elseif
+            (in_array($field['type'], ['select'])): ?>
                 <select <?php print html_attr(($field['extra']['attr'] ?? []) +
                     [
                         'name' => $field_id
                     ]); ?>>
-                    <?php foreach ($field['options'] as $option_id => $option): ?>
+                    <?php foreach ($field['select'] as $option_id => $option): ?>
                         <option value="<?php print $option_id; ?>"
                             <?php print ($field['value'] == $option_id) ? 'selected' : ''; ?>>
                             <?php print $option; ?>

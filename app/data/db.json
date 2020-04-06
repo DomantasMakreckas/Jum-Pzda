@@ -1,10 +1,1 @@
-[
-  {
-    "username": "laura.cepaityte",
-    "password": "vilnius123"
-  },
-  {
-    "username": "domantasmakreckas",
-    "password": "gejugejus"
-  }
-]
+[{"kardanas":"taip","bakas":"ne","zole":"ne"},{"kardanas":"taip","bakas":"taip","zole":"ne"},{"kardanas":"taip","bakas":"ne","zole":"taip"},{"kardanas":"taip","bakas":"ne","zole":"taip"},{"kardanas":"taip","bakas":"taip","zole":"ne"},{"kardanas":"ne","bakas":"taip","zole":"taip"},{"kardanas":"taip","bakas":"taip","zole":"taip"},{"kardanas":"ne","bakas":"ne","zole":"ne"},{"kardanas":"ne","bakas":"ne","zole":"ne"},{"kardanas":"taip","bakas":"taip","zole":"ne"},{"kardanas":"ne","bakas":"ne","zole":"ne"},{"kardanas":"taip","bakas":"taip","zole":"taip"}]
