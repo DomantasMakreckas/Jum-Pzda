@@ -12,3 +12,23 @@ function html_attr(array $attr): string
     }
     return $results;
 }
+
+function radio_attr(array $field, $field_id, $option_id)
+{
+    $option = $field['options'][$option_id];
+    $checked = ($field['value'] ?? null) == $option['value'];
+    $attrs = $field['extra']['attr'] ?? [];
+    $attrs += [
+        'name' => $field_id,
+        'type' => 'radio',
+        'value' => $option['value'] ?? ''
+    ];
+
+    if ($checked) {
+        $attrs += [
+            'checked' => true
+        ];
+    }
+
+    return html_attr($attrs);
+}

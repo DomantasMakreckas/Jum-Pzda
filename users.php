@@ -7,54 +7,51 @@ $table = [
         'Taip (%)',
     ],
     'rows' => [
-        [
-            'Ar laikai kardana?',
-        ],
-        [
-            'Ar pili i baka?'
-        ],
-        [
-            'Ar rukai zoliu arbata?'
-        ]
-
-    ],
-    'answers' => [
 
     ]
 ];
 
-$table['answers'] = file_to_array(DB_FILE) ?: [];
-$kardanas = 0;
-$bakas = 0;
-$zole = 0;
-foreach ($table['answers'] as $answer) {
+$questions = [
+    'kardanas' => 'Ar laikai kardana?',
+    'bakas' => 'Ar pili i baka?',
+    'zole' => 'Ar geri zoliu arbata?'
+];
 
-    if ($answer['kardanas'] == 'taip') {
-        $kardanas++;
-    }
-    if ($answer['bakas'] == 'taip') {
-        $bakas++;
-    }
-    if ($answer['zole'] == 'taip') {
-        $zole++;
+$data = file_to_array(DB_FILE) ?: [];
+
+$stats = [];
+
+foreach ($data as $response) {
+    foreach ($response as $question_id => $answer) {
+        if (!isset($stats[$question_id])) {
+            $stats[$question_id] = 0;
+        }
+
+        if ($answer == 'taip') {
+            $stats[$question_id]++;
+        }
     }
 }
 
-// Apskaiciuojam dalyciu skaiciu
-$participants = count(file_to_array(DB_FILE));
+$respondents = count($data);
 
-//apskaiciuojam procenta kiek zmoniu atsake TAIP
-$percent1 = round($kardanas / $participants * 100, 2);
-$percent2 = round($bakas / $participants * 100, 2);
-$percent3 = round($zole / $participants * 100, 2);
+foreach ($stats as $question_id => $count) {
+    $table['rows'][] = [
+        $questions[$question_id],
+        round($count / $respondents * 100, 2)
+    ];
+}
 
-// idedam i table rezultata
-$table['rows'][0][] = "$percent1 %";
-$table['rows'][1][] = "$percent2 %";
-$table['rows'][2][] = "$percent3 %";
+$p = "Viso respondentu $respondents";
 
-$p = "Viso respondentu $participants";
+$user_id = $_COOKIE['user_id'] ?? microtime();
+$visits = ($_COOKIE['visits'] ?? 0) + 1;
 
+setcookie('user_id', "$user_id", time() + 3600, "/");
+setcookie('visits', "$visits", time() + 3600, "/");
+
+$h1 = "User ID: $user_id";
+$h2 = "Vistis: $visits";
 
 ?>
 
@@ -69,11 +66,16 @@ $p = "Viso respondentu $participants";
 
 </style>
 <body>
-
+<h1><?php print $h1 ?></h1>
+<h2><?php print $h2 ?></h2>
 <section>
     <?php include 'core/templates/table.tpl.php'; ?>
     <p><?php print $p ?></p>
 </section>
+
+<div>
+
+</div>
 
 </body>
 </html>

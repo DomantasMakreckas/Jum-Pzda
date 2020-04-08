@@ -146,6 +146,7 @@ $form = [
         'kardanas' => [
             'type' => 'radio',
             'label' => 'Ar laikai kardana?',
+
             'validate' => [
                 'validate_not_empty',
             ],
@@ -164,6 +165,7 @@ $form = [
             'type' => 'radio',
             'label' => 'Ar pili i baka?',
             'value' => '',
+            'checked',
             'validate' => [
                 'validate_not_empty',
             ],
@@ -192,9 +194,10 @@ $form = [
                 ],
                 'ne' => [
                     'label' => 'Ne',
-                    'value' => 'ne'
+                    'value' => 'ne',
                 ]
             ],
+
         ]
     ],
     'buttons' => [
@@ -246,41 +249,47 @@ function form_success($safe_input, $form)
     $data = file_to_array(DB_FILE) ?: [];
 
     $data[] = [
-//        'username' => $safe_input['username'],
-//        'password' => $safe_input['password']
         'kardanas' => $safe_input['kardanas'],
         'bakas' => $safe_input['bakas'],
         'zole' => $safe_input['zole']
     ];
     array_to_file($data, DB_FILE);
 
+    setcookie('submited', 'done', strtotime('+1 hour'));
+    header("Location: /users.php");
 }
 
-//var_dump(file_to_array(DB_FILE));
+$user_id = $_COOKIE['user_id'] ?? microtime();
+$visits = ($_COOKIE['visits'] ?? 0) + 1;
 
-
-///**
-// * @param $form
-// * @param $safe_input
-// */
-//function form_success($safe_input, $form)
-//{
-//    $value = round(sqrt($safe_input['matematikas']), 2);
-//    $answer = $safe_input['atsakymas'];
-//    $result = $value - $answer;
-//    var_dump($result);
-//}
+if (isset($_COOKIE['submited'])) {
+    header("Location: http://phpsualum.lt/users.php");
+}
 
 function form_fail($safe_input, $form)
 {
+    $valid_fields = [];
     var_dump('Eik nx');
+    foreach ($form['fields'] as $field_index => $field) {
+        if (!isset($field['error'])) {
+            $valid_fields[$field_index] = $field['value'];
+        }
+    }
 
+    $string = json_encode($valid_fields);
+    setcookie('string', $string, time() + 3600);
 }
 
-//file_to_array(DB_FILE);
+if (isset($_COOKIE['string'])) {
+    var_dump($_COOKIE);
 
+    $decode_data = json_decode($_COOKIE['string'], true);
+    var_dump($decode_data);
 
-//var_dump($_POST);
+    fill_form($form, $decode_data);
+}
+
+var_dump($_POST);
 
 
 ?>

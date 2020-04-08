@@ -94,9 +94,4 @@ function validate_fields_match(array $safe_input, array &$form, array $params): 
     }
 
     return true;
-
-
-//    var_dump($safe_input);
-////    var_dump($form);
-//    var_dump($params);
 }

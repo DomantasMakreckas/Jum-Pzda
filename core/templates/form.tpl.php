@@ -12,16 +12,9 @@
                     ]);
                 ?>>
             <?php elseif (in_array($field['type'], ['radio'])): ?>
-                <?php foreach ($field['options'] as $radio_id => $radio_value): ?>
+                <?php foreach ($field['options'] as $option_id => $radio_value): ?>
                     <label><?php print $radio_value['label'] ?></label>
-                    <input <?php
-                    print html_attr(($field['extra']['attr'] ?? []) +
-                        [
-                            'name' => $field_id,
-                            'type' => $field['type'],
-                            'value' => $radio_value['value'] ?? ''
-                        ]);
-                    ?>>
+                    <input <?php print radio_attr($field, $field_id, $option_id); ?>>
                 <?php endforeach; ?>
             <?php elseif
             (in_array($field['type'], ['select'])): ?>

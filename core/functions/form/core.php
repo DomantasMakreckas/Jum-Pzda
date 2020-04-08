@@ -78,4 +78,17 @@ function get_filtered_input(array $form): ?array
     return filter_input_array(INPUT_POST, $filter_params);
 }
 
+/**
+ * @param array $form
+ * @param array $data
+ */
+function fill_form(array &$form, array $data):void
+{
+    foreach ($form['fields'] as $field_id => &$field) {
+        if (isset($data[$field_id])) {
+            $field['value'] = $data[$field_id];
+        }
+    }
+}
+
 
