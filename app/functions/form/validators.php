@@ -57,3 +57,46 @@ function validate_phone($field_input, array &$field): bool
     return true;
 }
 
+/**
+ * @param array $field_input
+ * @param array $field
+ * @return bool
+ */
+function validate_team($field_input, array &$field): bool
+{
+    $data = file_to_array(TEAM_FILE);
+
+    foreach ($data ?? [] as $team) {
+        if ($field_input == $team['team_name']) {
+            $field['error'] = 'Komanda egzistuoja';
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * @param array $safe_input
+ * @param array $form
+ * @return bool
+ */
+function validate_player(array $safe_input, array &$form): bool
+{
+    $data = file_to_array(TEAM_FILE);
+    $team = $data[$safe_input['teams']];
+
+    foreach ($team['players'] as $player) {
+        if ($player['nickname'] == $safe_input['nickname']) {
+            $form['error'] = 'Nickname uzimtas';
+
+            return false;
+        }
+
+
+    }
+
+    return true;
+}
+

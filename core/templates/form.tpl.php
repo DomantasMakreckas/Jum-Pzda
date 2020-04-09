@@ -22,7 +22,7 @@
                     [
                         'name' => $field_id
                     ]); ?>>
-                    <?php foreach ($field['select'] as $option_id => $option): ?>
+                    <?php foreach ($field['options'] as $option_id => $option): ?>
                         <option value="<?php print $option_id; ?>"
                             <?php print ($field['value'] == $option_id) ? 'selected' : ''; ?>>
                             <?php print $option; ?>

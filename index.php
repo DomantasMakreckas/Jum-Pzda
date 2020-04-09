@@ -224,16 +224,6 @@ $form = [
 
 ];
 
-//$table = [
-//    'head' => [
-//        'username',
-//        'password',
-//    ],
-//    'rows' => [
-//
-//    ]
-//];
-
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
