@@ -12,3 +12,5 @@ require 'app/functions/form/validators.php';
 define('DB_FILE', 'app/data/db.json');
 
 define('TEAM_FILE', 'app/data/team.json');
+
+session_start();

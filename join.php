@@ -7,33 +7,25 @@ $form = [
     'validators' => [
         'validate_player'
     ],
-    'attr' => [
-        'action' => 'join.php',
-        'method' => 'POST',
-        'class' => 'my-form',
-        'id' => 'login-form',
-    ],
     'fields' => [
         'teams' => [
             'label' => 'Join team:',
             'type' => 'select',
             'validate' => [
-
+                'validate_select'
             ],
             'value' => 'team_select',
-            'options' => [
-            ]
+            'options' => []
         ],
         'nickname' => [
             'label' => 'Nickname: ',
             'type' => 'text',
+            'value' => '',
             'validate' => [
                 'validate_not_empty',
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
                     'placeholder' => 'Nickas'
                 ]
             ]
@@ -42,32 +34,12 @@ $form = [
     'buttons' => [
         'submit' => [
             'text' => 'Join',
-            'name' => 'action',
-            'extra' => [
-                'attr' => [
-                    'class' => 'submit-button'
-                ]
-            ]
         ]
     ],
     'callbacks' => [
         'success' => 'form_success',
-        'fail' => 'form_fail'
     ]
 ];
-
-$teams = file_to_array(TEAM_FILE) ?: [];
-
-foreach ($teams as $team_id => $team) {
-    $form['fields']['teams']['options'][$team_id] = $team['team_name'];
-}
-
-if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
-}
-
-//var_dump($_POST);
 
 /**
  * @param $safe_input
@@ -78,35 +50,45 @@ function form_success($safe_input, $form)
     var_dump('paejo');
     $data = file_to_array(TEAM_FILE) ?: [];
 
-    foreach ($data as $team_id => $team) {
-        if ($team['team_name'] == $safe_input['teams']) {
-            $data[$team_id]['players'][] = [
-                'nickname' => $safe_input['nickname'],
-                'score' => 0
-            ];
-        }
-//        var_dump($team);
-    }
+    $data[$safe_input['teams']]['players'][] = [
+        'nickname' => $safe_input['nickname'],
+        'score' => 0
+    ];
 
-
-//    var_dump($data);
+    $team_cookie = json_encode($safe_input);
+    session_start();
+    $_SESSION['player'] = $team_cookie;
     array_to_file($data, TEAM_FILE);
 }
 
 
-//var_dump($safe_input);
-/**
- * @param $safe_input
- * @param $form
- */
-function form_fail($safe_input, $form)
-{
-    var_dump('EIk nx');
+if (isset($_SESSION['player'])) {
+    $player = json_decode($_COOKIE['player'], true);
+    $data = file_to_array(TEAM_FILE);
+
+    $team_name = $data[$player['teams']]['team_name'];
+    $player_name = $player['nickname'];
+
+    $text = "Zdarova pzdaballs zaidejau - $player_name. Jau esi komandoje $team_name";
+    $print_form = false;
+} else {
+    $print_form = true;
+}
+
+$teams = file_to_array(TEAM_FILE) ?: [];
+
+foreach ($teams as $team_id => $team) {
+    $form['fields']['teams']['options'][$team_id] = $team['team_name'];
+    var_dump($team);
 }
 
 
-?>
+if ($_POST) {
+    $safe_input = get_filtered_input($form);
+    validate_form($form, $safe_input);
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -114,13 +96,13 @@ function form_fail($safe_input, $form)
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>
-<style>
-
-</style>
 <body>
-<section>
-    <?php include 'core/templates/form.tpl.php'; ?>
-</section>
-
+<?php if ($print_form): ?>
+    <section>
+        <?php include 'core/templates/form.tpl.php' ?>
+    </section>
+<?php else: ?>
+    <h1><?php print $text ?></h1>
+<?php endif; ?>
 </body>
 </html>

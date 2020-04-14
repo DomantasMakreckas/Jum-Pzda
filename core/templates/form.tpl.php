@@ -51,7 +51,7 @@
         </button>
     <?php endforeach; ?>
     <?php if (isset($form['error'])): ?>
-        <p>  <?php print $form['error']; ?></p>
+        <p><?php print $form['error']; ?></p>
     <?php endif; ?>
 </form>
 

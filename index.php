@@ -256,6 +256,8 @@ if (isset($_COOKIE['submited'])) {
     header("Location: http://phpsualum.lt/users.php");
 }
 
+var_dump($_COOKIE);
+
 function form_fail($safe_input, $form)
 {
     $valid_fields = [];

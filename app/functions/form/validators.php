@@ -1,47 +1,4 @@
 <?php
-
-
-/**
- * @param $field_input
- * @param array $field
- * @param array $params
- * @return bool
- */
-function validate_field_range($field_input, array &$field, array $params): bool
-{
-    if ($field_input < $params['min'] || $field_input > $params['max']) {
-
-        $field['error'] = strtr('Skaicius turi buti daugiau nei @min ir maziau nei @max', [
-            '@min' => $params['min'],
-            '@max' => $params['max']
-        ]);
-        return false;
-    }
-
-    return true;
-}
-
-/**
- * @param $field_input
- * @param $field
- * @param $params
- * @return bool
- */
-function validate_text_length($field_input, array &$field, array $params): bool
-{
-    $text_length = strlen($field_input);
-
-    if ($text_length < $params['min'] || $text_length > $params['max']) {
-        $field['error'] = strtr('Laukelyje turi buti maziausiai @min simboliu ir daugiausiai @max simboliu', [
-            '@min' => $params['min'],
-            '@max' => $params['max']
-        ]);
-        return false;
-    }
-
-    return true;
-}
-
 /**
  * @param $field_input
  * @param $field
@@ -93,10 +50,35 @@ function validate_player(array $safe_input, array &$form): bool
 
             return false;
         }
-
-
     }
 
+    return true;
+}
+
+/**
+ * @param $safe_input
+ * @param $form
+ * @return bool|string
+ */
+function validate_kick($safe_input, &$form)
+{
+    $data = file_to_array(TEAM_FILE) ?: [];
+    $found = false;
+    if (isset($_SESSION['player'])) {
+        $decoded = json_decode($_SESSION['player'], true);
+        $team = &$data[$decoded['teams']];
+
+        foreach ($team['players'] as &$player) {
+            if ($player['nickname'] == $decoded['nickname']) {
+                $found = true;
+                break;
+            }
+        }
+    }
+    if (!$found) {
+        $form['error'] = 'Zaidejas neegzistuoja';
+        return false;
+    }
     return true;
 }
 
