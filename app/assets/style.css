@@ -25,4 +25,11 @@ button {
     margin-top: 20px;
 }
 
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 

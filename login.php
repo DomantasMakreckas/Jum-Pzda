@@ -1,7 +1,7 @@
 <?php
 require 'bootloader.php';
 
-$title = 'formos';
+$title = 'Login';
 
 $nav = [
     [
@@ -24,40 +24,16 @@ $nav = [
 
 $form = [
     'attr' => [
-        'action' => 'register.php',
+        'action' => 'login.php',
         'method' => 'POST',
     ],
     'fields' => [
-        'x' => [
-            'label' => 'X koordinates',
-            'type' => 'number',
+        'email' => [
+            'label' => 'Email',
+            'type' => 'email',
             'validate' => [
                 'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '200'
-                ]
-            ]
-        ],
-        'y' => [
-            'label' => 'Y koordinates',
-            'type' => 'number',
-            'validate' => [
-                'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '300'
-                ]
-            ]
-        ],
-        'color' => [
-            'label' => 'Spalva',
-            'type' => 'color',
-            'validate' => [
-                'validate_not_empty',
-
+                'validate_email'
             ],
             'extra' => [
                 'attr' => [
@@ -65,10 +41,24 @@ $form = [
                 ]
             ]
         ],
+        'password' => [
+            'label' => 'Password',
+            'type' => 'password',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Password'
+                ]
+            ]
+        ],
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Pirk pixeli',
+            'text' => 'Login',
             'name' => 'action',
             'extra' => [
                 'attr' => [
@@ -77,35 +67,36 @@ $form = [
             ]
         ]
     ],
-
+    'validators' => [
+        'validate_login'
+    ],
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
     ]
 ];
 
-$logged = is_logged_in();
+unset($nav[3]);
 
-$print = false;
-if ($logged) {
-    $data = file_to_array(USERS) ?: [];
-
-    foreach ($data as $people) {
-        if ($people['email'] == $_SESSION['email']) {
-            $username = $people['username'];
-            $print = true;
-        }
-    }
+if ($_POST) {
+    $safe_input = get_filtered_input($form);
+    validate_form($form, $safe_input);
 }
 
-if ($print) {
-    $h1 = "Sveiki, sugrize $username";
-    unset($nav[1]);
-    unset($nav[2]);
-} else {
-    $h1 = 'Jus neprisijunges';
-    unset($nav[3]);
+function form_success($safe_input, $form)
+{
+    var_dump('paejo');
+    $_SESSION['email'] = $safe_input['email'];
+    $_SESSION['password'] = $safe_input['password'];
+    header('Location: /index.php');
 }
+
+function form_fail($safe_input, $form)
+{
+    var_dump('asilas');
+}
+
+//var_dump($_COOKIE);
 
 ?>
 <!DOCTYPE html>
@@ -130,28 +121,11 @@ if ($print) {
         list-style: none;
     }
 
-    .pixels {
-        height: 800px;
-        width: 1700px;
-        border: 1px solid red;
-    }
 
-    span {
-        height: 10px;
-        width: 10px;
-        background-color: aqua;
-        display: block;
-    }
 </style>
 <body>
 <div>
     <?php include 'app/templates/nav.tpl.php'; ?>
-</div>
-<div>
-    <h1><?php print $h1 ?></h1>
-</div>
-<div class="pixels">
-    <span></span>
 </div>
 <section>
     <?php include 'core/templates/form.tpl.php'; ?>

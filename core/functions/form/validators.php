@@ -8,7 +8,7 @@
  */
 function validate_not_empty($field_input, &$field)
 {
-    if (empty($field_input)) {
+    if (strlen($field_input) == 0) {
         $field['error'] = 'Laukas negali buti tuscias';
         return false;
     }
@@ -136,3 +136,22 @@ function validate_text_length($field_input, array &$field, array $params): bool
 
     return true;
 }
+
+/**
+ * @param $field_input
+ * @param $field
+ * @return bool
+ */
+function validate_email($field_input, &$field)
+{
+    $pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i";
+    if (!preg_match_all($pattern, $field_input)) {
+        $field['error'] = 'Blogai ivestas Emailas';
+        return false;
+    }
+
+    return true;
+}
+
+
+

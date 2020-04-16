@@ -82,3 +82,48 @@ function validate_kick($safe_input, &$form)
     return true;
 }
 
+function validate_email_unique($field_input, &$field)
+{
+    $data = file_to_array(USERS) ?: [];
+    $found = false;
+
+    foreach($data as $data_index) {
+        if($data_index['email'] == $field_input) {
+            $found = true;
+            break;
+
+        }
+    }
+
+    if($found) {
+        $field['error'] = 'Email already registered';
+        return false;
+
+    }
+
+    return true;
+}
+
+/**
+ * @param $safe_input
+ * @param $form
+ * @return bool
+ */
+function validate_login($safe_input, &$form)
+{
+    $data = file_to_array(USERS) ?: [];
+
+    $found = false;
+    foreach ($data as $data_id) {
+        if ($data_id['email'] == $safe_input['email'] && $data_id['password'] == $safe_input['password']) {
+            $found = true;
+            break;
+        }
+    }
+    if (!$found) {
+        $form['error'] = 'Neteisingi prisijungimo duomenys';
+        return false;
+    }
+    return true;
+}
+

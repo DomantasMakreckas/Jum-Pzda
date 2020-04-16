@@ -1,7 +1,7 @@
 <?php
 require 'bootloader.php';
 
-$title = 'formos';
+$title = 'Register';
 
 $nav = [
     [
@@ -28,36 +28,11 @@ $form = [
         'method' => 'POST',
     ],
     'fields' => [
-        'x' => [
-            'label' => 'X koordinates',
-            'type' => 'number',
+        'username' => [
+            'label' => 'Username',
+            'type' => 'text',
             'validate' => [
                 'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '200'
-                ]
-            ]
-        ],
-        'y' => [
-            'label' => 'Y koordinates',
-            'type' => 'number',
-            'validate' => [
-                'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '300'
-                ]
-            ]
-        ],
-        'color' => [
-            'label' => 'Spalva',
-            'type' => 'color',
-            'validate' => [
-                'validate_not_empty',
-
             ],
             'extra' => [
                 'attr' => [
@@ -65,10 +40,53 @@ $form = [
                 ]
             ]
         ],
+        'email' => [
+            'label' => 'Email',
+            'type' => 'email',
+            'validate' => [
+                'validate_not_empty',
+                'validate_email',
+                'validate_email_unique'
+            ],
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'Username'
+                ]
+            ]
+        ],
+        'password' => [
+            'label' => 'Password',
+            'type' => 'password',
+            'validate' => [
+                'validate_not_empty',
+
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Password'
+                ]
+            ]
+        ],
+        'password_repeat' => [
+            'label' => 'Password Repeat',
+            'type' => 'password',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'first-name',
+                    'id' => 'first-name',
+                    'placeholder' => 'Repeat password'
+                ]
+            ]
+        ],
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Pirk pixeli',
+            'text' => 'Register',
             'name' => 'action',
             'extra' => [
                 'attr' => [
@@ -77,35 +95,44 @@ $form = [
             ]
         ]
     ],
-
+    'validators' => [
+        'validate_fields_match' => [
+            'password',
+            'password_repeat'
+        ]
+    ],
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
     ]
 ];
+unset($nav[3]);
 
-$logged = is_logged_in();
+if ($_POST) {
+    $safe_input = get_filtered_input($form);
+    validate_form($form, $safe_input);
+}
 
-$print = false;
-if ($logged) {
+function form_success($safe_input, $form)
+{
+    var_dump('paejo');
     $data = file_to_array(USERS) ?: [];
 
-    foreach ($data as $people) {
-        if ($people['email'] == $_SESSION['email']) {
-            $username = $people['username'];
-            $print = true;
-        }
-    }
+    $data[] = [
+        'username' => $safe_input['username'],
+        'email' => $safe_input['email'],
+        'password' => $safe_input['password']
+    ];
+
+    array_to_file($data, USERS);
+
 }
 
-if ($print) {
-    $h1 = "Sveiki, sugrize $username";
-    unset($nav[1]);
-    unset($nav[2]);
-} else {
-    $h1 = 'Jus neprisijunges';
-    unset($nav[3]);
+function form_fail($safe_input, $form)
+{
+    var_dump('asilas');
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -130,31 +157,16 @@ if ($print) {
         list-style: none;
     }
 
-    .pixels {
-        height: 800px;
-        width: 1700px;
-        border: 1px solid red;
-    }
 
-    span {
-        height: 10px;
-        width: 10px;
-        background-color: aqua;
-        display: block;
-    }
 </style>
 <body>
 <div>
     <?php include 'app/templates/nav.tpl.php'; ?>
 </div>
-<div>
-    <h1><?php print $h1 ?></h1>
-</div>
-<div class="pixels">
-    <span></span>
-</div>
 <section>
     <?php include 'core/templates/form.tpl.php'; ?>
 </section>
+
 </body>
 </html>
+

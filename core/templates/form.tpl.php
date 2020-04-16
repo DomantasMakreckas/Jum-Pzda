@@ -2,7 +2,7 @@
     <?php print html_attr(($form['attr'] ?? []) + ['method' => 'POST']); ?>>
     <?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
         <label><p><?php print $field['label'] ?></p>
-            <?php if (in_array($field['type'], ['text', 'email', 'password', 'number'])): ?>
+            <?php if (in_array($field['type'], ['text', 'email', 'password', 'number', 'color'])): ?>
                 <input <?php
                 print html_attr(($field['extra']['attr'] ?? []) +
                     [
