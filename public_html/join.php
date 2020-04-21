@@ -1,5 +1,5 @@
 <?php
-require 'bootloader.php';
+require '../bootloader.php';
 
 $title = 'Join';
 
@@ -99,7 +99,7 @@ if ($_POST) {
 <body>
 <?php if ($print_form): ?>
     <section>
-        <?php include 'core/templates/form.tpl.php' ?>
+        <?php include '../core/templates/form.tpl.php' ?>
     </section>
 <?php else: ?>
     <h1><?php print $text ?></h1>

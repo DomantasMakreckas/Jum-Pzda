@@ -1,5 +1,5 @@
 <?php
-require 'bootloader.php';
+require '../bootloader.php';
 
 $title = 'Register';
 
@@ -161,10 +161,10 @@ function form_fail($safe_input, $form)
 </style>
 <body>
 <div>
-    <?php include 'app/templates/nav.tpl.php'; ?>
+    <?php include '../app/templates/nav.tpl.php'; ?>
 </div>
 <section>
-    <?php include 'core/templates/form.tpl.php'; ?>
+    <?php include '../core/templates/form.tpl.php'; ?>
 </section>
 
 </body>

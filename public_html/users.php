@@ -1,5 +1,5 @@
 <?php
-require 'bootloader.php';
+require '../bootloader.php';
 
 $table = [
     'head' => [
@@ -69,7 +69,7 @@ $h2 = "Vistis: $visits";
 <h1><?php print $h1 ?></h1>
 <h2><?php print $h2 ?></h2>
 <section>
-    <?php include 'core/templates/table.tpl.php'; ?>
+    <?php include '../core/templates/table.tpl.php'; ?>
     <p><?php print $p ?></p>
 </section>
 

@@ -1,5 +1,5 @@
 <?php
-require 'bootloader.php';
+require '../bootloader.php';
 
 $title = 'Create';
 
@@ -52,13 +52,13 @@ if ($_POST) {
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <link rel="stylesheet" href="app/assets/style.css">
+    <link rel="stylesheet" href="../app/assets/style.css">
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>
 <body>
 <section>
-    <?php include 'core/templates/form.tpl.php'; ?>
+    <?php include '../core/templates/form.tpl.php'; ?>
 </section>
 </body>
 </html>

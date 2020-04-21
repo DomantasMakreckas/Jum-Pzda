@@ -1,5 +1,5 @@
 <?php
-require 'bootloader.php';
+require '../bootloader.php';
 
 $title = 'play';
 
@@ -77,7 +77,7 @@ function form_fail($safe_input, $form)
     <?php if ($nickname_print): ?>
         <h1><?php print $h1 ?></h1>
     <?php endif; ?>
-    <?php include 'core/templates/form.tpl.php' ?>
+    <?php include '../core/templates/form.tpl.php' ?>
 </section>
 </body>
 </html>
