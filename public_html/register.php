@@ -116,16 +116,14 @@ if ($_POST) {
 function form_success($safe_input, $form)
 {
     var_dump('paejo');
-    $data = file_to_array(USERS) ?: [];
 
-    $data[] = [
+    App\App::$db->insertRow('users', [
         'username' => $safe_input['username'],
         'email' => $safe_input['email'],
         'password' => $safe_input['password']
-    ];
+    ]);
 
-    array_to_file($data, USERS);
-
+//    header('Location: /login.php');
 }
 
 function form_fail($safe_input, $form)
@@ -138,7 +136,7 @@ function form_fail($safe_input, $form)
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <link rel="stylesheet" href="app/assets/style.css">
+    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>

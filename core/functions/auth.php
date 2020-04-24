@@ -15,18 +15,16 @@ function logout($redirect = false)
 /**
  * @return bool
  */
-function is_logged_in()
+function current_user()
 {
-    $users = file_to_array(USERS) ?: [];
     if (isset($_SESSION['email'])) {
-        foreach ($users as $user) {
-            if ($user['email'] == $_SESSION['email']) {
-                if ($_SESSION['password'] == $user['password']) {
-                    return true;
-                } else {
-                    logout(false);
-                }
-            }
+        App\App::$db->load();
+        $conditions = [
+            'email' => $_SESSION['email'],
+            'password' => $_SESSION['password']
+        ];
+        if ($users = App\App::$db->getRowsWhere('users', $conditions)) {
+            return reset($users);
         }
     }
     return false;

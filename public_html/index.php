@@ -1,7 +1,23 @@
 <?php
+
+
 require '../bootloader.php';
 
 $title = 'formos';
+
+function form_success($safe_input, $form)
+{
+    var_dump('paejo');
+
+    if (App\App::$db->getRowsWhere('users', ['email' => $_SESSION['email']])) {
+        App\App::$db->insertRow('pixel_table', [
+            'username' => $_SESSION['email'],
+            'x' => $safe_input['x'],
+            'y' => $safe_input['y'],
+            'color' => $safe_input['color'],
+        ]);
+    }
+}
 
 $nav = [
     [
@@ -23,16 +39,16 @@ $nav = [
 ];
 
 $form = [
-    'attr' => [
-        'action' => 'register.php',
-        'method' => 'POST',
-    ],
     'fields' => [
         'x' => [
             'label' => 'X koordinates',
             'type' => 'number',
             'validate' => [
                 'validate_not_empty',
+                'validate_field_range' => [
+                    'min' => 1,
+                    'max' => 800,
+                ]
             ],
             'extra' => [
                 'attr' => [
@@ -45,6 +61,10 @@ $form = [
             'type' => 'number',
             'validate' => [
                 'validate_not_empty',
+                'validate_field_range' => [
+                    'min' => 1,
+                    'max' => 1000,
+                ]
             ],
             'extra' => [
                 'attr' => [
@@ -59,11 +79,6 @@ $form = [
                 'validate_not_empty',
 
             ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Username'
-                ]
-            ]
         ],
     ],
     'buttons' => [
@@ -77,29 +92,15 @@ $form = [
             ]
         ]
     ],
-
     'callbacks' => [
         'success' => 'form_success',
-        'fail' => 'form_fail'
     ]
 ];
 
-$logged = is_logged_in();
+$user = current_user();
 
-$print = false;
-if ($logged) {
-    $data = file_to_array(USERS) ?: [];
-
-    foreach ($data as $people) {
-        if ($people['email'] == $_SESSION['email']) {
-            $username = $people['username'];
-            $print = true;
-        }
-    }
-}
-
-if ($print) {
-    $h1 = "Sveiki, sugrize $username";
+if ($user) {
+    $h1 = "Sveiki, sugrize " . $user['username'];
     unset($nav[1]);
     unset($nav[2]);
 } else {
@@ -107,39 +108,18 @@ if ($print) {
     unset($nav[3]);
 }
 
-$array = [
-    [
-        'oop' => '!poo',
-        'oop1' => '!poo',
-    ],
-    [
-        'oop' => '!poo',
-        'oop1' => '!poo',
-    ]
-];
+if ($_POST) {
+    $safe_input = get_filtered_input($form);
+    validate_form($form, $safe_input);
+}
 
-$db = new FileDB(DB_FILE);
-
-$db->setData($array);
-$db->save();
-$db->load();
-$db->getData();
-
-var_dump($db);
-
-$db->createTable('bybys');
-$db->insertRow('alus', $array, 'indeksas');
-$data = $db->getData();
-var_dump($data);
-var_dump($db->getData());
-var_dump(array_key_last($data['alus']));
-
+$pixels = App\App::$db->getRowsWhere('pixel_table', []);
 
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <link rel="stylesheet" href="../app/assets/style.css">
+    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>
@@ -162,27 +142,33 @@ var_dump(array_key_last($data['alus']));
         height: 800px;
         width: 1700px;
         border: 1px solid red;
+        position: relative;
     }
 
     span {
         height: 10px;
         width: 10px;
-        background-color: aqua;
-        display: block;
+        display: inline-block;
+        position: absolute;
     }
 </style>
-<!--<body>-->
-<!--<div>-->
-<!--    --><?php //include '../app/templates/nav.tpl.php'; ?>
-<!--</div>-->
-<!--<div>-->
-<!--    <h1>--><?php //print $h1 ?><!--</h1>-->
-<!--</div>-->
-<!--<div class="pixels">-->
-<!--    <span></span>-->
-<!--</div>-->
-<!--<section>-->
-<!--    --><?php //include '../core/templates/form.tpl.php'; ?>
-<!--</section>-->
+<body>
+<div>
+    <?php include '../app/templates/nav.tpl.php'; ?>
+</div>
+<div>
+    <h1><?php print $h1 ?></h1>
+</div>
+<div class="pixels">
+    <?php foreach ($pixels as $pixel): ?>
+        <span style="
+                top: <?php print $pixel['x']; ?>;
+                left: <?php print $pixel['y']; ?>;
+                background: <?php print $pixel['color']; ?>; "></span>
+    <?php endforeach; ?>
+</div>
+<section>
+    <?php include '../core/templates/form.tpl.php'; ?>
+</section>
 </body>
 </html>

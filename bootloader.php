@@ -4,6 +4,7 @@ define('ROOT', __DIR__);
 define('DB_FILE', ROOT . '/app/data/db.json');
 define('TEAM_FILE', 'app/data/team.json');
 define('USERS', 'app/data/users.json');
+define('PIXEL_FILE', 'app/data/pixels.json');
 
 // loadinam branduolines funkcijas
 require 'core/functions/form/core.php';
@@ -15,4 +16,6 @@ require 'core/functions/auth.php';
 // loadinam projektui specifines funkcijas
 require 'app/functions/form/validators.php';
 
-require('core/classes/FileDB.php');
+require 'vendor/autoload.php';
+
+$app = new App\App();

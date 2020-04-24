@@ -20,7 +20,6 @@ function validate_form(array &$form, array $safe_input): bool
                 $valid = $validator_function($field['value'], $field, $validate_params);
             } else {
                 $validator_function = $field_validator;
-
                 $valid = $validator_function($field['value'], $field);
             }
             if (!$valid) {
@@ -39,7 +38,6 @@ function validate_form(array &$form, array $safe_input): bool
                 $valid = $validator_function($safe_input, $form, $validate_params);
             } else {
                 $validator_function = $form_validator;
-
                 $valid = $validator_function($safe_input, $form);
             }
             if (!$valid) {
@@ -49,7 +47,6 @@ function validate_form(array &$form, array $safe_input): bool
         }
     }
 
-//    var_dump($success);
     if (isset($form['callbacks']['success']) && $success) {
         $form['callbacks']['success']($safe_input, $form);
     } elseif (isset($form['callbacks']['fail']) && !$success) {
