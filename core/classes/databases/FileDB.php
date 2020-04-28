@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\Databases;
 
 class FileDB
@@ -230,5 +231,18 @@ class FileDB
         }
 
         return $results;
+    }
+
+
+    /**
+     * @param string $table_name
+     * @param array $conditions
+     * @return mixed
+     */
+    public function getRowWhere(string $table_name, array $conditions)
+    {
+        $result = $this->getRowsWhere($table_name, $conditions);
+
+        return reset($result);
     }
 }

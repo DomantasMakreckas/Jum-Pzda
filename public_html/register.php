@@ -123,7 +123,7 @@ function form_success($safe_input, $form)
         'password' => $safe_input['password']
     ]);
 
-//    header('Location: /login.php');
+    header('Location: /login.php');
 }
 
 function form_fail($safe_input, $form)

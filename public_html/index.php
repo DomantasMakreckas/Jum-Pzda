@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Pixels\Pixel;
+
 require '../bootloader.php';
 
 $title = 'formos';
@@ -8,14 +10,11 @@ $title = 'formos';
 function form_success($safe_input, $form)
 {
     var_dump('paejo');
+    $safe_input['email'] = $_SESSION['email'];
+    $pixel = new Pixel($safe_input);
 
-    if (App\App::$db->getRowsWhere('users', ['email' => $_SESSION['email']])) {
-        App\App::$db->insertRow('pixel_table', [
-            'username' => $_SESSION['email'],
-            'x' => $safe_input['x'],
-            'y' => $safe_input['y'],
-            'color' => $safe_input['color'],
-        ]);
+    if (App\App::$db->getRowsWhere('users', ['email' => $pixel->getEmail()])) {
+        App\App::$db->insertRow('pixel_table', $pixel->getData());
     }
 }
 
@@ -97,7 +96,7 @@ $form = [
     ]
 ];
 
-$user = current_user();
+$user = \App\App::$session->getUser();
 
 if ($user) {
     $h1 = "Sveiki, sugrize " . $user['username'];
@@ -114,6 +113,18 @@ if ($_POST) {
 }
 
 $pixels = App\App::$db->getRowsWhere('pixel_table', []);
+
+class Ploscius {
+
+    private $owner;
+
+    public function setOwner(string $name) {
+        $this->owner = $name;
+    }
+}
+
+$ploscius = new Ploscius();
+$ploscius->setOwner(8008);
 
 ?>
 <!DOCTYPE html>

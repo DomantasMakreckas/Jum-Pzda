@@ -87,9 +87,8 @@ function form_success($safe_input, $form)
 {
     var_dump('paejo');
 
+    \App\App::$session->login($safe_input['email'], $safe_input['password']);
 
-    $_SESSION['email'] = $safe_input['email'];
-    $_SESSION['password'] = $safe_input['password'];
     header('Location: /index.php');
 }
 
@@ -98,7 +97,6 @@ function form_fail($safe_input, $form)
     var_dump('asilas');
 }
 
-//var_dump($_COOKIE);
 
 ?>
 <!DOCTYPE html>
