@@ -97,6 +97,9 @@ function form_fail($safe_input, $form)
     var_dump('asilas');
 }
 
+$view_form = new \Core\Views\Form($form);
+
+$view_nav = new \Core\Views\Form($nav);
 
 ?>
 <!DOCTYPE html>
@@ -125,10 +128,9 @@ function form_fail($safe_input, $form)
 </style>
 <body>
 <div>
-    <?php include '../app/templates/nav.tpl.php'; ?>
-</div>
+    <?php print $view_nav->render(ROOT . '/app/templates/nav.tpl.php');?></div>
 <section>
-    <?php include '../core/templates/form.tpl.php'; ?>
+    <?php print $view_form->render(ROOT . '/core/templates/form.tpl.php')?>
 </section>
 </body>
 </html>

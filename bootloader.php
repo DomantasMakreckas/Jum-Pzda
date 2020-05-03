@@ -11,6 +11,9 @@ define('TEAM_FILE', 'app/data/team.json');
 define('USERS', 'app/data/users.json');
 define('PIXEL_FILE', 'app/data/pixels.json');
 
+define('FORM_TEMPLATE', ROOT . '/core/templates/form.tpl.php');
+define('NAV_TEMPLATE', ROOT . '/app/templates/nav.tpl.php');
+
 // loadinam branduolines funkcijas
 require 'core/functions/form/core.php';
 require 'core/functions/form/validators.php';

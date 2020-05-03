@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Users\User;
 use Core\Databases\FileDB;
 use Core\Session;
 

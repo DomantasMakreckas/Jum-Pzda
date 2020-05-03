@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <?php foreach ($nav as $navi) :?>
+        <?php foreach ($data as $navi) :?>
             <li class="<?php print ($_SERVER['PHP_SELF'] == $navi['url']) ?  'active' : ''; ?>">
                 <a href="<?php print $navi['url'];?>"><?php print $navi['page'];?></a>
                 <?php if(count($navi) > 2): ?>

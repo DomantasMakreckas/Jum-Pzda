@@ -3,6 +3,7 @@
 namespace Core;
 
 use App\App;
+use App\Users\User;
 
 class Session
 {
@@ -34,7 +35,7 @@ class Session
         if ($user_info) {
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            $this->user = $user_info;
+            $this->user = new User($user_info);
 
             return true;
         }
@@ -42,7 +43,7 @@ class Session
         return false;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }

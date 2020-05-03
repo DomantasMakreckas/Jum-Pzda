@@ -241,8 +241,8 @@ class FileDB
      */
     public function getRowWhere(string $table_name, array $conditions)
     {
-        $result = $this->getRowsWhere($table_name, $conditions);
+        $results = $this->getRowsWhere($table_name, $conditions);
 
-        return reset($result);
+        return reset($results);
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+use App\Users\User;
+
 require '../bootloader.php';
 
 $title = 'Register';
@@ -117,13 +120,10 @@ function form_success($safe_input, $form)
 {
     var_dump('paejo');
 
-    App\App::$db->insertRow('users', [
-        'username' => $safe_input['username'],
-        'email' => $safe_input['email'],
-        'password' => $safe_input['password']
-    ]);
+    $user = new User($safe_input);
+    App\App::$db->insertRow('users', $user->_getData());
 
-    header('Location: /login.php');
+//    header('Location: /login.php');
 }
 
 function form_fail($safe_input, $form)
@@ -131,7 +131,9 @@ function form_fail($safe_input, $form)
     var_dump('asilas');
 }
 
+$view_form = new \Core\Views\Form($form);
 
+$view_nav = new \Core\Views\Form($nav);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -154,17 +156,13 @@ function form_fail($safe_input, $form)
     li {
         list-style: none;
     }
-
-
 </style>
 <body>
 <div>
-    <?php include '../app/templates/nav.tpl.php'; ?>
-</div>
+    <?php print $view_nav->render(ROOT . '/app/templates/nav.tpl.php');?></div>
 <section>
-    <?php include '../core/templates/form.tpl.php'; ?>
+    <?php print $view_form->render(ROOT . '/core/templates/form.tpl.php')?>
 </section>
-
 </body>
 </html>
 

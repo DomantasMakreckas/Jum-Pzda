@@ -1,6 +1,6 @@
 <form
-    <?php print html_attr(($form['attr'] ?? []) + ['method' => 'POST']); ?>>
-    <?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
+    <?php print html_attr(($data['attr'] ?? []) + ['method' => 'POST']); ?>>
+    <?php foreach ($data['fields'] ?? [] as $field_id => $field): ?>
         <label><p><?php print $field['label'] ?></p>
             <?php if (in_array($field['type'], ['text', 'email', 'password', 'number', 'color'])): ?>
                 <input <?php
@@ -44,14 +44,14 @@
             <?php endif; ?>
         </label>
     <?php endforeach; ?>
-    <?php foreach ($form['buttons'] ?? [] as $button_id => $button): ?>
+    <?php foreach ($data['buttons'] ?? [] as $button_id => $button): ?>
         <button <?php
         print html_attr(($button['extra']['attr'] ?? []) + ['value' => $button_id, 'name' => 'action']); ?>>
             <?php print $button['text']; ?>
         </button>
     <?php endforeach; ?>
-    <?php if (isset($form['error'])): ?>
-        <p><?php print $form['error']; ?></p>
+    <?php if (isset($data['error'])): ?>
+        <p><?php print $data['error']; ?></p>
     <?php endif; ?>
 </form>
 

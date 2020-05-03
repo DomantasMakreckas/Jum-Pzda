@@ -14,7 +14,7 @@ function form_success($safe_input, $form)
     $pixel = new Pixel($safe_input);
 
     if (App\App::$db->getRowsWhere('users', ['email' => $pixel->getEmail()])) {
-        App\App::$db->insertRow('pixel_table', $pixel->getData());
+        App\App::$db->insertRow('pixel_table', $pixel->_getData());
     }
 }
 
@@ -62,7 +62,7 @@ $form = [
                 'validate_not_empty',
                 'validate_field_range' => [
                     'min' => 1,
-                    'max' => 1000,
+                    'max' => 1700,
                 ]
             ],
             'extra' => [
@@ -99,7 +99,7 @@ $form = [
 $user = \App\App::$session->getUser();
 
 if ($user) {
-    $h1 = "Sveiki, sugrize " . $user['username'];
+    $h1 = "Sveiki, sugrize " . $user->getUsername();
     unset($nav[1]);
     unset($nav[2]);
 } else {
@@ -114,17 +114,15 @@ if ($_POST) {
 
 $pixels = App\App::$db->getRowsWhere('pixel_table', []);
 
-class Ploscius {
 
-    private $owner;
+$properties = [
+    'x' => 100,
+    'y' => 200
+];
 
-    public function setOwner(string $name) {
-        $this->owner = $name;
-    }
-}
+$view_form = new \Core\Views\Form($form);
+$view_nav = new \App\Views\Navigation($nav);
 
-$ploscius = new Ploscius();
-$ploscius->setOwner(8008);
 
 ?>
 <!DOCTYPE html>
@@ -165,7 +163,7 @@ $ploscius->setOwner(8008);
 </style>
 <body>
 <div>
-    <?php include '../app/templates/nav.tpl.php'; ?>
+    <?php print $view_nav->render();?>
 </div>
 <div>
     <h1><?php print $h1 ?></h1>
@@ -173,13 +171,13 @@ $ploscius->setOwner(8008);
 <div class="pixels">
     <?php foreach ($pixels as $pixel): ?>
         <span style="
-                top: <?php print $pixel['x']; ?>;
-                left: <?php print $pixel['y']; ?>;
+                top: <?php print $pixel['x']; ?>px;
+                left: <?php print $pixel['y']; ?>px;
                 background: <?php print $pixel['color']; ?>; "></span>
     <?php endforeach; ?>
 </div>
 <section>
-    <?php include '../core/templates/form.tpl.php'; ?>
+    <?php print $view_form->render()?>
 </section>
 </body>
 </html>
