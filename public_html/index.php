@@ -2,6 +2,8 @@
 
 
 use App\Pixels\Pixel;
+use App\Views\Navigation;
+use Core\Views\Form;
 
 require '../bootloader.php';
 
@@ -120,8 +122,8 @@ $properties = [
     'y' => 200
 ];
 
-$view_form = new \Core\Views\Form($form);
-$view_nav = new \App\Views\Navigation($nav);
+$view_form = new Form($form);
+$view_nav = new Navigation($nav);
 
 
 ?>
@@ -163,7 +165,7 @@ $view_nav = new \App\Views\Navigation($nav);
 </style>
 <body>
 <div>
-    <?php print $view_nav->render();?>
+    <?php print $view_nav->render(); ?>
 </div>
 <div>
     <h1><?php print $h1 ?></h1>
@@ -177,7 +179,7 @@ $view_nav = new \App\Views\Navigation($nav);
     <?php endforeach; ?>
 </div>
 <section>
-    <?php print $view_form->render()?>
+    <?php print $view_form->render() ?>
 </section>
 </body>
 </html>

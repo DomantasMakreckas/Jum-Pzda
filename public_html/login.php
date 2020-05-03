@@ -1,4 +1,8 @@
 <?php
+
+use App\Views\Navigation;
+use Core\Views\Form;
+
 require '../bootloader.php';
 
 $title = 'Login';
@@ -97,9 +101,9 @@ function form_fail($safe_input, $form)
     var_dump('asilas');
 }
 
-$view_form = new \Core\Views\Form($form);
+$view_form = new Form($form);
 
-$view_nav = new \Core\Views\Form($nav);
+$view_nav = new Navigation($nav);
 
 ?>
 <!DOCTYPE html>
@@ -128,9 +132,9 @@ $view_nav = new \Core\Views\Form($nav);
 </style>
 <body>
 <div>
-    <?php print $view_nav->render(ROOT . '/app/templates/nav.tpl.php');?></div>
+    <?php print $view_nav->render(); ?></div>
 <section>
-    <?php print $view_form->render(ROOT . '/core/templates/form.tpl.php')?>
+    <?php print $view_form->render(ROOT . '/core/templates/form.tpl.php') ?>
 </section>
 </body>
 </html>
