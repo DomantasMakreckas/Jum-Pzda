@@ -83,6 +83,42 @@ console.log(result);
 console.log(result.map(getWords));
 
 const p = document.createElement('p');
-const text = document.createTextNode(lyrics.join(' '));
+let text = document.createTextNode(lyrics.join(' '));
+
 p.appendChild(text);
 document.body.appendChild(p);
+
+let word = 'dream';
+
+function firsUpperCase(word) {
+    let letters = word.split('');
+    let upperCaseLetter = letters[0].toUpperCase();
+    letters.splice(0, 1, upperCaseLetter);
+
+    return letters.join('');
+}
+
+console.log(firsUpperCase(word));
+
+const lyrics = ['bitch', 'money', 'bitches'];
+
+lyrics.forEach(getWord);
+
+function musuForEach(lyrics) {
+    for (let key in lyrics) {
+        getWord(lyrics[key], key, lyrics)
+    }
+}
+
+
+function getWord(value, index, array) {
+
+}
+
+
+// function capitalizeLetter(value) {
+//     return value.slice(1).toUpperCase(value);
+// }
+//
+// console.log(capitalize(lyrics.join(' ')));
+// console.log(capitalize('bybys kiausai'));
