@@ -1,15 +1,28 @@
 'use strict';
-let number = Math.floor(Math.random() * 11);
-// const number = Math.round(randomNumber);
-console.log(number);
 
-let input = prompt('Atspek skaiciu');
+function fullNameGenerator(firstNmae, lastName) {
+    let name = firstNmae;
+    let surname = lastName;
 
-while (Number(input) !== number) {
-    number = Math.floor(Math.random() * 11);
-    console.log(number);
-    input = prompt('Bandyk dar karta');
+    function getFullName() {
+        return name + ' ' + surname;
+    }
+
+    function changeFirstName(newName) {
+        name = newName;
+        return name;
+    }
+
+    return {getFullName: getFullName, changeFirstName: changeFirstName};
 }
 
-alert('mldc, pataikei');
-    
+
+const user1 = fullNameGenerator('Domantas', 'Makreckas');
+const user2 = fullNameGenerator('Mykolas', 'Becius');
+
+
+console.log(user1.getFullName());
+// console.log(user2());
+user1.changeFirstName('marius');
+console.log(user1.getFullName());
+

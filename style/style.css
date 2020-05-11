@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+li {
+    margin: 8px;
+    position: relative;
+}
+
+li button {
+    margin-left: 10px;
+}
+
+.edit-button {
+display: none;
+}
