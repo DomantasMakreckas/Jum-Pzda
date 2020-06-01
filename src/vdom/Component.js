@@ -1,4 +1,5 @@
 'use strict';
+import {updateComponent} from "./updateComponent";
 
 export class Component {
     constructor(props) {
@@ -11,8 +12,8 @@ export class Component {
         this.state = {
             ...this.state,
             ...state
-        }
+        };
+
+        updateComponent(this);
     }
-
-
 }

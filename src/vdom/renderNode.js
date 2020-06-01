@@ -18,22 +18,18 @@ export function renderNode(vNode) {
     let $node;
 
     if (typeof nodeName === 'function') {
-        $node = renderComponent(nodeName)
+        $node = renderComponent(nodeName, attributes)
     } else {
-        $node = document.createElement(nodeName);
-
-        for (let key in attributes) {
-            $node.setAttribute(key, attributes[key])
-        }
+        $node = renderElement(nodeName, attributes)
     }
-
+    // console.log(vNode)
     children.forEach(child => mount(child, $node));
-
+    // console.log($node);
     return $node
 }
 
-export function renderComponent(Component) {
-    const componentObject = new Component();
+export function renderComponent(Component, props) {
+    const componentObject = new Component(props);
     const vNode = componentObject.render();
     const $node = renderNode(vNode);
     componentObject.$node = $node;
@@ -41,4 +37,18 @@ export function renderComponent(Component) {
     return $node
 }
 
+function renderElement(nodeName, attributes) {
+    const $node = document.createElement(nodeName);
+
+    // console.log({$node});
+    for (let key in attributes) {
+        if (typeof attributes[key] === 'string') {
+            $node.setAttribute(key, attributes[key])
+        } else {
+            $node.addEventListener(key, attributes[key])
+        }
+    }
+
+    return $node;
+}
 
