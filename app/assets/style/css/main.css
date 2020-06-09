@@ -1,0 +1,50 @@
+.map {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.arrow {
+  width: 400px;
+  height: 200px;
+}
+
+.arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.advance {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav {
+  background: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/*# sourceMappingURL=main.css.map */

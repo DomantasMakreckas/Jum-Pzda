@@ -1,0 +1,44 @@
+.battle-wrap {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-image: url("http://www.vilniusgo.lt/wp-content/uploads/2018/08/Kino-teatras-Lazdynai-5.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.my-soldiers {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  flex: 1;
+  height: 100vh;
+  margin-right: 50px;
+  img {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.enemy-soldiers {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  flex: 1;
+  height: 100vh;
+  margin-left: 50px;
+  img {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.barbed {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  width: 30%;
+}
