@@ -1,7 +1,7 @@
 <?php
+
 namespace App;
 
-use App\Users\User;
 use Core\Databases\FileDB;
 use Core\Session;
 
@@ -10,6 +10,9 @@ class App
     public static $db;
     public static $session;
 
+    /**
+     * App constructor.
+     */
     public function __construct()
     {
         self::$db = new FileDB(DB_FILE);

@@ -1,7 +1,10 @@
 <?php
 
-
-use App\Pixels\Pixel;
+use App\App;
+use App\Cart\Items\Item;
+use App\Cart\Items\ItemModel;
+use App\Drink\DrinkModel;
+use App\Views\Catalog;
 use App\Views\Navigation;
 use Core\Views\Form;
 
@@ -12,157 +15,101 @@ $title = 'formos';
 function form_success($safe_input, $form)
 {
     var_dump('paejo');
-    $safe_input['email'] = $_SESSION['email'];
-    $pixel = new Pixel($safe_input);
-
-    if (App\App::$db->getRowsWhere('users', ['email' => $pixel->getEmail()])) {
-        \App\Pixels\Model::insert(new Pixel($safe_input));
-    }
+    $item = new Item($safe_input);
+    $item->setStatus(Item::STATUS_IN_CART);
+    ItemModel::insert($item);
 }
 
-
-
-$nav = [
-    [
-        'url' => '/index.php',
-        'page' => 'Home',
+$add_form = [
+    'callbacks' => [
+        'success' => 'form_success',
     ],
-    [
-        'url' => '/register.php',
-        'page' => 'Register',
-    ],
-    [
-        'url' => '/login.php',
-        'page' => 'Login',
-    ],
-    [
-        'url' => '/logout.php',
-        'page' => 'Logout',
-    ],
-];
-
-$form = [
     'fields' => [
-        'x' => [
-            'label' => 'X koordinates',
-            'type' => 'number',
-            'validate' => [
-                'validate_not_empty',
-                'validate_field_range' => [
-                    'min' => 1,
-                    'max' => 800,
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '200'
-                ]
-            ]
+        'user_id' => [
+            'type' => 'hidden',
+            'value' => '',
         ],
-        'y' => [
-            'label' => 'Y koordinates',
-            'type' => 'number',
-            'validate' => [
-                'validate_not_empty',
-                'validate_field_range' => [
-                    'min' => 1,
-                    'max' => 1700,
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => '300'
-                ]
-            ]
-        ],
-        'color' => [
-            'label' => 'Spalva',
-            'type' => 'color',
-            'validate' => [
-                'validate_not_empty',
-
-            ],
+        'drink_id' => [
+            'type' => 'hidden',
+            'value' => '',
         ],
     ],
     'buttons' => [
-        'submit' => [
-            'text' => 'Pirk pixeli',
-            'name' => 'action',
+        'send' => [
+            'text' => 'pirk alkoholi',
             'extra' => [
                 'attr' => [
-                    'class' => 'submit-button'
+                    'class' => 'buy-btn'
                 ]
             ]
-        ]
+        ],
     ],
-    'callbacks' => [
-        'success' => 'form_success',
-    ]
 ];
 
-$user = \App\App::$session->getUser();
+$user = App::$session->getUser();
+$drinks = DrinkModel::getWhere([]);
+$form = [];
 
-if ($user) {
-    $h1 = "Sveiki, sugrize " . $user->getUsername();
-    unset($nav[1]);
-    unset($nav[2]);
-} else {
-    $h1 = 'Jus neprisijunges';
-    unset($nav[3]);
+foreach ($drinks as $drink_id => $drink) {
+    $result[$drink_id]['data'] = $drink;
+    if ($user) {
+        $add_form['fields']['drink_id']['value'] = $drink->getId();
+        $add_form['fields']['user_id']['value'] = $user->getId();
+        $add_button = new Form($add_form);
+        $result[$drink_id]['form'] = $add_button;
+    }
 }
 
 if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
+    $safe_input = get_filtered_input($add_form);
+    validate_form($add_form, $safe_input);
 }
 
-$pixels = App\App::$db->getRowsWhere('pixel_table', []);
+$user = App::$session->getUser();
+
+if ($user) {
+    $h1 = "Sveiki, sugrize " . $user->getUsername();
+} else {
+    $h1 = 'Jus neprisijunges';
+}
 
 
-$properties = [
-    'x' => 100,
-    'y' => 200
-];
-
-$view_form = new Form($form);
-$view_nav = new Navigation($nav);
-
-
+$view_catalog = new Catalog($result);
+$view_nav = new Navigation();
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <title><?php print $title ?></title>
 </head>
 <style>
-    ul {
+    form {
+        background: none;
+        display: block;
+        padding: 0px;
+    }
+
+    button {
+        margin-top: 0px;
+    }
+    img {
+        height: 200px;
+    }
+    section {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
 
-    a {
-        text-decoration: none;
+    .sandelys {
+        border: 1px solid black;
+        margin: 20px;
+        min-width: 300px;
     }
-
-    li {
-        list-style: none;
-    }
-
-    .pixels {
-        height: 800px;
-        width: 1700px;
-        border: 1px solid red;
-        position: relative;
-    }
-
-    span {
-        height: 10px;
-        width: 10px;
-        display: inline-block;
-        position: absolute;
+    .full-beer {
+        text-align: center;
     }
 </style>
 <body>
@@ -172,16 +119,6 @@ $view_nav = new Navigation($nav);
 <div>
     <h1><?php print $h1 ?></h1>
 </div>
-<div class="pixels">
-    <?php foreach ($pixels as $pixel): ?>
-        <span style="
-                top: <?php print $pixel['x']; ?>px;
-                left: <?php print $pixel['y']; ?>px;
-                background: <?php print $pixel['color']; ?>; "></span>
-    <?php endforeach; ?>
-</div>
-<section>
-    <?php print $view_form->render() ?>
-</section>
+<?php print $view_catalog->render(); ?>
 </body>
 </html>

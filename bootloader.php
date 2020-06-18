@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Core\Session;
-
 session_start();
 define('ROOT', __DIR__);
 define('DB_FILE', ROOT . '/app/data/db.json');
@@ -23,8 +21,6 @@ require 'core/functions/auth.php';
 
 // loadinam projektui specifines funkcijas
 require 'app/functions/form/validators.php';
-
-//require 'app/classes/Pixels/Pixel.php';
 
 require 'vendor/autoload.php';
 

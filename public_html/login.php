@@ -1,30 +1,12 @@
 <?php
 
+use App\App;
 use App\Views\Navigation;
 use Core\Views\Form;
 
 require '../bootloader.php';
 
 $title = 'Login';
-
-$nav = [
-    [
-        'url' => '/index.php',
-        'page' => 'Home',
-    ],
-    [
-        'url' => '/register.php',
-        'page' => 'Register',
-    ],
-    [
-        'url' => '/login.php',
-        'page' => 'Login',
-    ],
-    [
-        'url' => '/logout.php',
-        'page' => 'Logout',
-    ],
-];
 
 $form = [
     'attr' => [
@@ -80,7 +62,6 @@ $form = [
     ]
 ];
 
-unset($nav[3]);
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
@@ -91,7 +72,7 @@ function form_success($safe_input, $form)
 {
     var_dump('paejo');
 
-    \App\App::$session->login($safe_input['email'], $safe_input['password']);
+    App::$session->login($safe_input['email'], $safe_input['password']);
 
     header('Location: /index.php');
 }
@@ -103,7 +84,7 @@ function form_fail($safe_input, $form)
 
 $view_form = new Form($form);
 
-$view_nav = new Navigation($nav);
+$view_nav = new Navigation();
 
 ?>
 <!DOCTYPE html>
@@ -134,7 +115,7 @@ $view_nav = new Navigation($nav);
 <div>
     <?php print $view_nav->render(); ?></div>
 <section>
-    <?php print $view_form->render(ROOT . '/core/templates/form.tpl.php') ?>
+    <?php print $view_form->render() ?>
 </section>
 </body>
 </html>

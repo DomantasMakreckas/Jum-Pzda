@@ -88,4 +88,10 @@ function fill_form(array &$form, array $data): void
     }
 }
 
-
+/**
+ * @return mixed|null
+ */
+function get_form_action()
+{
+        return $_POST['action'] ?? null;
+}

@@ -1,103 +1,116 @@
 <?php
 
+use App\App;
+use App\Drink\Drink;
+use App\Drink\DrinkModel;
 use App\Users\User;
-use App\Users\UserModel;
 use App\Views\Navigation;
 use Core\Views\Form;
 
-require '../bootloader.php';
+require '../../bootloader.php';
 
-$title = 'Register';
+$title = 'Add';
+
+if (!App::$session->userIs(User::ROLE_ADMIN)) {
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
+}
+
+function form_success($safe_input, $form)
+{
+    var_dump('paejo');
+    DrinkModel::insert(new Drink($safe_input));
+}
+
+$nav = [
+    [
+        'url' => 'http://phpsualum.lt/admin/view.php',
+        'page' => 'View',
+    ],
+];
 
 $form = [
-    'attr' => [
-        'action' => 'register.php',
-        'method' => 'POST',
-    ],
     'fields' => [
-        'username' => [
-            'label' => 'Username',
+        'name' => [
+            'label' => 'Pavadinimas',
             'type' => 'text',
             'validate' => [
                 'validate_not_empty',
             ],
             'extra' => [
                 'attr' => [
-                    'placeholder' => 'Username'
+                    'placeholder' => 'Pvz.: Lithuanica'
                 ]
             ]
         ],
-        'firstname' => [
-            'label' => 'FirstName',
+        'degrees' => [
+            'label' => 'Laipsniai',
+            'type' => 'number',
+            'validate' => [
+                'validate_not_empty',
+                'validate_field_range' => [
+                    'min' => 1,
+                    'max' => 100,
+                ]
+            ],
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'Pvz.: 40'
+                ]
+            ]
+        ],
+        'size' => [
+            'label' => 'Tūris(ml)',
+            'type' => 'number',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'Pvz.: 700'
+                ]
+            ]
+        ],
+        'quantity' => [
+            'label' => 'Kiekis sandėlyje',
+            'type' => 'number',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'Pvz.: 10'
+                ]
+            ]
+        ],
+        'price' => [
+            'label' => 'Kaina (EUR)',
+            'type' => 'number',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'Pvz.: 14,99'
+                ]
+            ]
+        ],
+        'image' => [
+            'label' => 'Nuotrauka(URL)',
             'type' => 'text',
             'validate' => [
                 'validate_not_empty',
             ],
             'extra' => [
                 'attr' => [
-                    'placeholder' => 'First Name'
-                ]
-            ]
-        ],
-        'lastname' => [
-            'label' => 'LastName',
-            'type' => 'text',
-            'validate' => [
-                'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Last Name'
-                ]
-            ]
-        ],
-        'email' => [
-            'label' => 'Email',
-            'type' => 'email',
-            'validate' => [
-                'validate_not_empty',
-                'validate_email',
-                'validate_email_unique'
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Username'
-                ]
-            ]
-        ],
-        'password' => [
-            'label' => 'Password',
-            'type' => 'password',
-            'validate' => [
-                'validate_not_empty',
-
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                    'placeholder' => 'Password'
-                ]
-            ]
-        ],
-        'password_repeat' => [
-            'label' => 'Password Repeat',
-            'type' => 'password',
-            'validate' => [
-                'validate_not_empty',
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'first-name',
-                    'id' => 'first-name',
-                    'placeholder' => 'Repeat password'
+                    'placeholder' => 'Pvz.: http://...'
                 ]
             ]
         ],
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Register',
+            'text' => 'Sukurti',
             'name' => 'action',
             'extra' => [
                 'attr' => [
@@ -106,40 +119,20 @@ $form = [
             ]
         ]
     ],
-    'validators' => [
-        'validate_fields_match' => [
-            'password',
-            'password_repeat'
-        ]
-    ],
     'callbacks' => [
         'success' => 'form_success',
-        'fail' => 'form_fail'
     ]
 ];
+
+$view_form = new Form($form);
+$view_nav = new Navigation($nav);
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
-
-function form_success($safe_input, $form)
-{
-    var_dump('paejo');
-
-    $user = new User($safe_input);
-    $user->setRole(User::ROLE_USER);
-    UserModel::insert($user);
-}
-
-function form_fail($safe_input, $form)
-{
-    var_dump('asilas');
-}
-
-$view_form = new Form($form);
-$view_nav = new Navigation();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -149,9 +142,7 @@ $view_nav = new Navigation();
 </head>
 <style>
     ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        text-align: center;
     }
 
     a {
@@ -159,16 +150,32 @@ $view_nav = new Navigation();
     }
 
     li {
-        list-style: none;
+        list-style-type: none;
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    button {
+        margin-top: 20px;
     }
 </style>
 <body>
-<div>
-    <?php print $view_nav->render(); ?>
-</div>
+<header>
+    <?php print $view_nav->render() ?>
+</header>
 <section>
     <?php print $view_form->render() ?>
 </section>
 </body>
 </html>
-

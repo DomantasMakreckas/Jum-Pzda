@@ -14,7 +14,13 @@ function html_attr(array $attr): string
     return $results;
 }
 
-function radio_attr(array $field, $field_id, $option_id)
+/**
+ * @param array $field
+ * @param $field_id
+ * @param $option_id
+ * @return string
+ */
+function radio_attr(array $field, $field_id, $option_id): string
 {
     $option = $field['options'][$option_id];
     $checked = ($field['value'] ?? null) == $option['value'];
@@ -39,7 +45,7 @@ function radio_attr(array $field, $field_id, $option_id)
  * @param $field
  * @return string
  */
-function input_attr($field_id, $field)
+function input_attr($field_id, $field): string
 {
     $attrs = $field['extra']['attr'] ?? [];
     $attrs += [
@@ -56,7 +62,7 @@ function input_attr($field_id, $field)
  * @param $field
  * @return string
  */
-function select_attr($field_id, $field)
+function select_attr($field_id, $field): string
 {
     $attrs = $field['extra']['attr'] ?? [];
     $attrs += [
@@ -71,7 +77,7 @@ function select_attr($field_id, $field)
  * @param $field
  * @return string
  */
-function option_attr($option_id, $field)
+function option_attr($option_id, $field): string
 {
     $attrs = $field['extra']['attr'] ?? [];
     $attrs += [
@@ -90,7 +96,7 @@ function option_attr($option_id, $field)
  * @param $field
  * @return string
  */
-function textarea_attr($field_id, $field)
+function textarea_attr($field_id, $field): string
 {
     $attrs = $field['extra']['attr'] ?? [];
     $attrs += [

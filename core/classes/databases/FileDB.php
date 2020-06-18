@@ -71,7 +71,7 @@ class FileDB
      * @param $table_name
      * @return bool
      */
-    public function createTable($table_name)
+    public function createTable($table_name):bool
     {
         if (!$this->tableExists($table_name)) {
             $this->data[$table_name] = [];
@@ -174,7 +174,7 @@ class FileDB
             $this->data[$table_name][$row_id] = $row;
             return true;
         }
-
+        var_dump('klaida');
         return false;
     }
 
@@ -203,9 +203,8 @@ class FileDB
     public function getRowById(string $table_name, $row_id)
     {
         if ($this->rowExists($table_name, $row_id)) {
-            return $this->data[$table_name][$row_id];
+            return ['id' => $row_id] + $this->data[$table_name][$row_id];
         }
-
         return false;
     }
 

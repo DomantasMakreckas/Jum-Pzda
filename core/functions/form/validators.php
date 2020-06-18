@@ -6,7 +6,7 @@
  * @param $field
  * @return bool
  */
-function validate_not_empty($field_input, &$field)
+function validate_not_empty($field_input, &$field): bool
 {
     if (strlen($field_input) == 0) {
         $field['error'] = 'Laukas negali buti tuscias';
@@ -20,7 +20,7 @@ function validate_not_empty($field_input, &$field)
  * @param $field
  * @return bool
  */
-function validate_is_number($field_input, &$field)
+function validate_is_number($field_input, &$field): bool
 {
     if (!is_numeric($field_input)) {
         $field['error'] = 'Laukas privalo buti skaicius';
@@ -34,7 +34,7 @@ function validate_is_number($field_input, &$field)
  * @param $field
  * @return bool
  */
-function validate_is_positive($field_input, &$field)
+function validate_is_positive($field_input, &$field): bool
 {
     if ($field_input <= 0) {
         $field['error'] = 'Lauko verte privalo buti teigimas skaicius';
@@ -48,7 +48,7 @@ function validate_is_positive($field_input, &$field)
  * @param $field
  * @return bool
  */
-function validate_space($field_input, &$field)
+function validate_space($field_input, &$field): bool
 {
     if (!strpos($field_input, ' ')) {
         $field['error'] = 'Prasau ivesti Varda ir Pavarde';
@@ -142,7 +142,7 @@ function validate_text_length($field_input, array &$field, array $params): bool
  * @param $field
  * @return bool
  */
-function validate_email($field_input, &$field)
+function validate_email($field_input, &$field): bool
 {
     $pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i";
     if (!preg_match_all($pattern, $field_input)) {

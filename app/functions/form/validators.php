@@ -61,7 +61,7 @@ function validate_player(array $safe_input, array &$form): bool
  * @param $form
  * @return bool|string
  */
-function validate_kick(array $safe_input, array &$form):bool
+function validate_kick(array $safe_input, array &$form): bool
 {
     $data = file_to_array(TEAM_FILE) ?: [];
     $found = false;
@@ -83,7 +83,12 @@ function validate_kick(array $safe_input, array &$form):bool
     return true;
 }
 
-function validate_email_unique($field_input, &$field)
+/**
+ * @param $field_input
+ * @param $field
+ * @return bool
+ */
+function validate_email_unique($field_input, &$field): bool
 {
     if (App\App::$db->getRowsWhere('users', ['email' => $field_input])) {
         $field['error'] = 'Email already registered';
@@ -98,7 +103,7 @@ function validate_email_unique($field_input, &$field)
  * @param $form
  * @return bool
  */
-function validate_login($safe_input, &$form)
+function validate_login($safe_input, &$form): bool
 {
     if (isset($safe_input['email'])) {
         if (!App\App::$db->getRowsWhere('users', [

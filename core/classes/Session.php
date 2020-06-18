@@ -10,11 +10,17 @@ class Session
 
     private $user;
 
+    /**
+     * Session constructor.
+     */
     public function __construct()
     {
         $this->loginFromCookie();
     }
 
+    /**
+     *
+     */
     public function loginFromCookie()
     {
         if ($_SESSION) {
@@ -23,7 +29,12 @@ class Session
 
     }
 
-    public function login($email, $password)
+    /**
+     * @param $email
+     * @param $password
+     * @return bool
+     */
+    public function login($email, $password): bool
     {
         $conditions = [
             'email' => $email,
@@ -43,11 +54,17 @@ class Session
         return false;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param null $redirect
+     */
     public function logout($redirect = null)
     {
         $_SESSION = [];
@@ -57,5 +74,19 @@ class Session
         if ($redirect) {
             header("Location: $redirect");
         }
+    }
+
+    /**
+     * @param int $role
+     * @return bool
+     */
+    public function userIs(int $role): bool
+    {
+        if (($user = \App\App::$session->getUser()) && $user->getRole() == $role) {
+            return true;
+
+        };
+
+        return false;
     }
 }
