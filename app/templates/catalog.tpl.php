@@ -12,7 +12,7 @@
             </div>
             <p>Sandelyje: <?php print $drink['data']->getQuantity() ?></p>
             <?php if ($drink['form'] ?? null): ?>
-                <?php print $drink['form']->render(); ?>
+                <?php print $drink['form']; ?>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

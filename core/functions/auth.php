@@ -8,7 +8,7 @@ function logout($redirect = false)
     setcookie('PHPSESSID', null, -1);
 
     if ($redirect) {
-        header('Location: /login.php');
+        header('Location: /login');
     }
 }
 

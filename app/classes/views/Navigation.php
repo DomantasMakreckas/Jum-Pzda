@@ -44,19 +44,19 @@ class Navigation extends View
     {
         return [
             [
-                'url' => '/cart.php',
+                'url' => '/cart',
                 'page' => 'Cart',
             ],
             [
-                'url' => '/orders/index.php',
+                'url' => '/orders/index',
                 'page' => 'Orders',
             ],
             [
-                'url' => '/index.php',
+                'url' => '/index',
                 'page' => 'Catalog',
             ],
             [
-                'url' => '/logout.php',
+                'url' => '/logout',
                 'page' => 'Logout',
             ],
         ];
@@ -69,23 +69,23 @@ class Navigation extends View
     {
         return [
             [
-                'url' => '/admin/view.php',
+                'url' => '/admin/view',
                 'page' => 'View Product',
             ],
             [
-                'url' => '/admin/add.php',
+                'url' => '/admin/add',
                 'page' => 'Add Product'
             ],
             [
-                'url' => '/index.php',
+                'url' => '/index',
                 'page' => 'Catalog'
             ],
             [
-                'url' => '/admin/orders/index.php',
+                'url' => '/admin/orders/index',
                 'page' => 'View Orders',
             ],
             [
-                'url' => '/logout.php',
+                'url' => '/logout',
                 'page' => 'logout'
             ],
 
@@ -100,15 +100,15 @@ class Navigation extends View
     {
         return [
             [
-                'url' => '/login.php',
+                'url' => '/login',
                 'page' => 'Login'
             ],
             [
-                'url' => '/index.php',
+                'url' => '/index',
                 'page' => 'Catalog'
             ],
             [
-                'url' => '/register.php',
+                'url' => '/register',
                 'page' => 'Register'
             ],
         ];

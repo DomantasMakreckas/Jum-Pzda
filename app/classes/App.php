@@ -3,6 +3,7 @@
 namespace App;
 
 use Core\Databases\FileDB;
+use Core\Router;
 use Core\Session;
 
 class App
@@ -24,5 +25,9 @@ class App
     public function __destruct()
     {
         self::$db->save();
+    }
+
+    public function run(){
+        print Router::run();
     }
 }

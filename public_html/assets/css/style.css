@@ -1,0 +1,154 @@
+* {
+    background: greenyellow;
+}
+header {
+    background: lightgrey;
+}
+header li {
+    border: 1px solid black;
+    margin: 0 10px 0 0;
+    border-radius: 40px;
+    background: white;
+    transition: .2s;
+}
+header li a{
+    text-decoration: none;
+    color: black;
+    background: white;
+    transition: .2s;
+}
+header li:hover, header li:hover a{
+    background: grey;
+    color: white;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+}
+nav ul li {
+    padding: 5px 20px 5px 20px;
+    list-style: none;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    width: 200px;
+    padding: 20px;
+    min-height: 300px;
+    background: white;
+    border-radius: 20px;
+}
+.form div, .form input, .form label {
+    background: white;
+}
+button:hover {
+    box-shadow: 1px 1px 5px black;
+}
+input {
+    width: 200px;
+    margin-top: 5px;
+}
+button {
+    width: 200px;
+    margin-top: 20px;
+    transition: .5s;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.section_cat {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.drink_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px 0 10px;
+}
+img {
+    border: 1px solid red;
+    margin: 5px;
+    height: 200px;
+    transition: .3s;
+}
+.drink_box_inside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid yellow;
+    padding: 10px;
+    transition: .5s;
+    border-radius: 20px;
+}
+img:hover {
+    transform: scale(1.2);
+}
+.drink_box_inside:hover {
+    box-shadow: 5px 5px 20px black;
+}
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid green;
+    min-width: 200px;
+    min-height: 300px;
+    background: white;
+}
+tbody, tr, td, th, tbody div, td a, h2, select  {
+    background: white;
+}
+th {
+    padding: 10px;
+    text-align: center;
+}
+td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+tr {
+    border: 1px solid black;
+}
+.order-name {
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+    min-width: 200px;
+}
+.order-name h3 {
+    margin: 5px;
+    opacity: 0.4;
+}
+.state-selector form div {
+    display: flex;
+    flex-direction: column;
+}
+footer {
+    display: flex;
+}
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalog section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
